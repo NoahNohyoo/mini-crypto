@@ -1,6 +1,6 @@
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js';
 
-const BaseView = () => {
+const Navigation = () => {
     window.addEventListener('DOMContentLoaded', event => {
 
         // Navbar shrink function
@@ -46,6 +46,7 @@ const BaseView = () => {
         });
 
     });
+
     return (
         <div>
             {/* Navigation bar */}
@@ -66,55 +67,8 @@ const BaseView = () => {
                     </div>
                 </div>
             </nav>
-            {/* Intro area */}
-            <header className="masthead">
-                <div className="container px-4 px-lg-5 h-100">
-                    <div className="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-                        <div className="col-lg-8 align-self-end">
-                            <h1 className="text-white font-weight-bold">New portfolio in 2022</h1>
-                            <hr className="divider" />
-                        </div>
-                        <div className="col-lg-8 align-self-baseline">
-                            <p className="text-white-75 mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
-                            <a className="btn btn-primary btn-xl" href="#list">VIEW CRYPTO LIST</a>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            {/* Main List */}
-            <section className="page-section bg-primary" id="list">
-                <div className="container px-4 px-lg-5">
-                    <div className="row gx-4 gx-lg-5 justify-content-center">
-                        <div className="col-lg-8 text-center">
-                            <h2 className="text-white mt-0">We've got what you need!</h2>
-                            <hr className="divider divider-light" />
-                            <p className="text-white-75 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
-                            <a className="btn btn-light btn-xl" href="#services">Get Started!</a>
-                        </div>
-                        <div className="col-lg-8 text-center">
-                            <h2 className="text-white mt-0">We've got what you need!</h2>
-                            <hr className="divider divider-light" />
-                            <p className="text-white-75 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
-                            <a className="btn btn-light btn-xl" href="#services">Get Started!</a>
-                        </div>
-                        <div className="col-lg-8 text-center">
-                            <h2 className="text-white mt-0">We've got what you need!</h2>
-                            <hr className="divider divider-light" />
-                            <p className="text-white-75 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
-                            <a className="btn btn-light btn-xl" href="#services">Get Started!</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            {/* Footer */}
-            <footer className="bg-light py-5" >
-                <div className="container px-4 px-lg-5">
-                    <div className="small text-center text-muted">Copyright &copy; 2022 - Mini Crypto</div>
-                    <div className="small text-center text-muted">(This demo site is for portfolio use only)</div>
-                </div>
-            </footer >
             {/* Sign up Modal */}
-            <div className="modal fade" id="startModal" tabindex="-1" aria-labelledby="startModalLabel" aria-hidden="true">
+            <div className="modal fade" id="startModal" tabIndex="-1" aria-labelledby="startModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="modal-header bg-gradient-primary-to-secondary p-4">
@@ -154,10 +108,8 @@ const BaseView = () => {
                     </div>
                 </div>
             </div>
-            {/* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> */}
-            {/* <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script> */}
         </div>
     )
 }
 
-export default BaseView;
+export default Navigation;

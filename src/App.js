@@ -1,11 +1,18 @@
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import BaseView from "./components/BaseView";
+import React from 'react';
+import Navigation from "./components/Navigation";
+import Header from "./components/Header";
+import Section from "./components/Section";
+import Footer from "./components/Footer";
 import './App.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <div className="App">
-      <BaseView />
+      <Navigation />
+      <Header />
+      <Section />
+      <Footer />
     </div>
   );
 }
