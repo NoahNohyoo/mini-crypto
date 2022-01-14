@@ -5,7 +5,8 @@ const Section = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const cryptosCode = ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'SOLUSDT', 'ADAUSDT', 'XRPUSDT', 'LUNAUSDT', 'DOTUSDT', 'DOGEUSDT', 'MATICUSDT', 'LINKUSDT', 'UNIUSDT'];
-    const [cryptos, setCryptos] = useState(null);
+    const cryptosName = ['Bitcoin', 'Ethereum', 'BNB', 'Solana', 'Cardano', 'XRP', 'Terra', 'Polkadot', 'Dogecoin', 'Polygon', 'Chainlink', 'Uniswap'];
+    const [cryptos, setCryptos] = useState([]);
 
     const amountCommas = (amount) => {
         amount = amount.slice(0, amount.length - 6);
@@ -23,11 +24,12 @@ const Section = () => {
             );
 
             const cryptoList = [];
-            cryptosCode.map((crypto) => {
+            cryptosCode.map((crypto, index) => {
                 const data = (response.data).find(ele => ele.symbol === crypto);
-                data.amount = `$ ${amountCommas(data.price)}`;
-                data.name = (data.symbol).replace("USDT", "");
-                data.imgUrl = `/images/icons/icon_${data.name}.png`;
+                data.amount = `$${amountCommas(data.price)}`;
+                data.name = cryptosName[index];
+                data.symbol = (data.symbol).replace("USDT", "");
+                data.imgUrl = `/images/icons/icon_${data.symbol}.png`;
                 cryptoList.push(data);
             })
             setCryptos(cryptoList);
@@ -45,7 +47,7 @@ const Section = () => {
         return () => clearTimeout(timerId);
     }, [cryptos]);
 
-    // if (loading) return <div>로딩중..</div>;
+    // if (loading) return <div>Data is loading...</div>;
 
     return (
         <div>
@@ -57,11 +59,19 @@ const Section = () => {
                             <h2 className="text-white mt-0">Create your cryptocurrency portfolio today</h2>
                             <hr className="divider divider-light" />
                             <p className="text-white-75 mb-4">Mini Crypto has a variety of features that make it the best place to start trading</p>
-                            <ul className="card">
+                            <ul className="list-group-horizontal">
+                                <li className="cList">
+                                    <span className="item-no">#</span>
+                                    <span className="item-name">Name</span>
+                                    <span className="item-price">Price</span>
+                                    <span className="item-trade">Trade</span>
+                                </li>
                                 {cryptos.map((info, index) => (
-                                    <li className="list-group" key={info.symbol}>
-                                        <img className="icon-symbol" src={info.imgUrl} />
-                                        {index + 1} {info.name} {info.symbol} {info.amount}
+                                    <li className="cList" key={info.symbol}>
+                                        <span className="item-no">{index + 1}</span>
+                                        <span className="item-name"><img className="icon-symbol" src={info.imgUrl} /> {info.name} {info.symbol}</span>
+                                        <span className="item-price">{info.amount}</span>
+                                        <span className="item-trade"><button className="btn btn-primary rounded-pill px-3 mb-02 mb-lg-0">Buy</button></span>
                                     </li>
                                 ))}
                             </ul>

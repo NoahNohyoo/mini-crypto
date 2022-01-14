@@ -11816,7 +11816,38 @@ header.masthead .h1 {
   }
 }
 
-.icon-symbol {
-  width: 5%;
+.cList {
+  display: flex;
+  align-items: center;
+  background: var(--bs-white);
+  border: 1px solid var(--bs-orange);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 3px;
+  font-size: 1.2em;
+}
+
+.cList .item {
+  flex-grow: 1;
+}
+
+.cList .item-no {
+  width: 10%;
+}
+
+.cList .item-name {
+  width: 40%;
+}
+
+.cList .item-price {
+  width: 30%;
+}
+
+.cList .item-trade {
+  width: 20%;
+}
+
+.cList .item-name .icon-symbol {
+  width: 12%;
   border-radius: 50%;
 }
