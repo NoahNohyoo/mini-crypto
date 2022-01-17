@@ -5,7 +5,7 @@ import { Link, NavLink } from 'react-router-dom';
 import axios from "axios";
 import $ from "jquery";
 import { } from "jquery.cookie";
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = false;
 const headers = { withCredentials: true };
 
 const Navigation = () => {

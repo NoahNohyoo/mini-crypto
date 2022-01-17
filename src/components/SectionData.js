@@ -19,10 +19,10 @@ const SectionData = () => {
             setError(null);
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
+
             const response = await axios.get(
                 'https://api.binance.com/api/v1/ticker/allPrices'
             );
-
             const cryptoList = [];
             cryptosCode.map((crypto, index) => {
                 const data = (response.data).find(ele => ele.symbol === crypto);
@@ -40,6 +40,7 @@ const SectionData = () => {
         }
         setLoading(false);
     };
+
 
     useEffect(() => {
         const timerId = setTimeout(() => {
