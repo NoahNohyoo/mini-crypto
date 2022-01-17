@@ -51,7 +51,7 @@ const SectionData = () => {
     // if (loading) return <div>Data is loading...</div>;
 
     return (
-        <div>
+        <>
             {cryptos.map((info) => (
                 <li className="cList" key={info.symbol}>
                     <span className="item-no">{info.idx}</span>
@@ -61,7 +61,7 @@ const SectionData = () => {
                 </li>
             ))}
 
-        </div>
+        </>
     )
 }
 

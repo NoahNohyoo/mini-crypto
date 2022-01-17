@@ -11851,3 +11851,7 @@ header.masthead .h1 {
   width: 12%;
   border-radius: 50%;
 }
+
+#sign-out :hover {
+  cursor: pointer;
+}

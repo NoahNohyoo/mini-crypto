@@ -1,8 +1,9 @@
+import React from 'react';
 import SectionData from "./SectionData";
 
 const Section = () => {
     return (
-        <div>
+        <>
             {/* Main List */}
             <section className="page-section bg-primary" id="list">
                 <div className="container px-4 px-lg-5">
@@ -24,7 +25,7 @@ const Section = () => {
                     </div>
                 </div>
             </section>
-        </div>
+        </>
     )
 }
 

@@ -1,8 +1,8 @@
-
+import React from 'react';
 
 const Header = () => {
     return (
-        <div>
+        <>
             {/* Intro area */}
             <header className="masthead">
                 <div className="container px-4 px-lg-5 h-100">
@@ -18,7 +18,7 @@ const Header = () => {
                     </div>
                 </div>
             </header>
-        </div>
+        </>
     )
 
 }

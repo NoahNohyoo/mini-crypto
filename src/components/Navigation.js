@@ -1,36 +1,132 @@
-import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js'; // use
+import { Link, NavLink } from 'react-router-dom';
+import axios from "axios";
+import $ from "jquery";
+import { } from "jquery.cookie";
+axios.defaults.withCredentials = true;
+const headers = { withCredentials: true };
 
 const Navigation = () => {
-    window.addEventListener('DOMContentLoaded', event => {
+    const [inputName, setInputName] = useState('');
+    const [inputEmail, setInputEmail] = useState('');
+    const [inputPassword, setInputPassword] = useState('');
 
-        // Navbar shrink function
-        const navbarShrink = function () {
-            const navbarCollapsible = document.body.querySelector('#mainNav');
-            if (!navbarCollapsible) {
-                return;
-            }
-            if (window.scrollY === 0) {
-                navbarCollapsible.classList.remove('navbar-shrink')
-            } else {
-                navbarCollapsible.classList.add('navbar-shrink')
-            }
+    const [condition, setCondition] = useState(false);
+    const toggle = () => setCondition(!condition);
+    useEffect(() => {
+    }, [condition]);
 
+    const history = useHistory();
+    const handleToMain = () => {
+        history.push("/");
+    }
+    const handleToSignIn = () => {
+        history.push("/signIn");
+    }
+
+    const goSignUp = () => {
+        const joinName = inputName;
+        const joinEmail = inputEmail;
+        const joinPw = inputPassword;
+        const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        const regExp2 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
+        if (joinEmail === "" || joinEmail === undefined) {
+            // this.joinEmail.focus();
+            return;
+        } else if (
+            joinEmail.match(regExp) === null ||
+            joinEmail.match(regExp) === undefined
+        ) {
+            alert("이메일 형식에 맞게 입력해주세요.");
+            setInputEmail("");
+            // this.joinEmail.focus();
+            return;
+        } else if (joinName === "" || joinName === undefined) {
+            alert("이름을 입력해주세요.");
+            // this.joinName.focus();
+            return;
+        } else if (joinPw === "" || joinPw === undefined) {
+            alert("비밀번호를 입력해주세요.");
+            // this.joinPw.focus();
+            return;
+        } else if (
+            joinPw.match(regExp2) === null ||
+            joinPw.match(regExp2) === undefined
+        ) {
+            alert("비밀번호를 숫자와 문자, 특수문자 포함 8~16자리로 입력해주세요.");
+            setInputPassword("");
+            // this.joinPw.focus();
+            return;
+        }
+
+        const send_param = {
+            headers,
+            email: joinEmail,
+            name: joinName,
+            password: joinPw
         };
-
-        // Shrink the navbar 
-        navbarShrink();
-
-        // Shrink the navbar when page is scrolled
-        document.addEventListener('scroll', navbarShrink);
-
-        // Activate Bootstrap scrollspy on the main nav element
-        const mainNav = document.body.querySelector('#mainNav');
-        if (mainNav) {
-            new bootstrap.ScrollSpy(document.body, {
-                target: '#mainNav',
-                offset: 74,
+        axios
+            .post("http://169.254.119.81:8080/member/join", send_param)
+            //정상 수행
+            .then(returnData => {
+                if (returnData.data.message) {
+                    // alert(returnData.data.message);
+                    //이메일 중복 체크
+                    if (returnData.data.dupYn === "1") {
+                        setInputEmail("");
+                        // this.joinEmail.focus();
+                    } else {
+                        setInputName("");
+                        setInputEmail("");
+                        setInputPassword("");
+                        $("[data-bs-dismiss=modal]").trigger({ type: "click" });
+                        handleToSignIn();
+                    }
+                } else {
+                    console.log("failed sign up");
+                }
+            })
+            //에러
+            .catch(err => {
+                console.log(err);
             });
-        };
+    }
+
+    const goSignOut = () => {
+        axios
+            .get("http://169.254.119.81:8080/member/logout", {
+                headers
+            })
+            .then(returnData => {
+                if (returnData.data.message) {
+                    $.removeCookie("login_id");
+                    toggle();
+                    handleToMain();
+                }
+            });
+    }
+
+
+
+    useEffect(() => {
+        if ($.cookie("login_id")) {
+            $("#sign-in").hide();
+            $("#get-started").hide();
+            $("#sign-out").show();
+            $("#my-assets").show();
+        } else {
+            $("#sign-out").hide();
+            $("#my-assets").hide();
+            $("#sign-in").show();
+            $("#get-started").show();
+        }
+    })
+
+
+
+    window.addEventListener('DOMContentLoaded', event => {
 
         // Collapse responsive navbar when toggler is visible
         const navbarToggler = document.body.querySelector('.navbar-toggler');
@@ -48,18 +144,20 @@ const Navigation = () => {
     });
 
     return (
-        <div>
+        <>
             {/* Navigation bar */}
-            <nav className="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <nav className="navbar navbar-expand-lg navbar-light fixed-top py-3 navbar-shrink" id="mainNav">
                 <div className="container px-4 px-lg-5">
-                    <a className="navbar-brand" href="">Mini Crypto</a>
+                    <Link className="navbar-brand" to="/">Mini Crypto</Link>
                     <button className="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
                     <div className="collapse navbar-collapse" id="navbarResponsive">
                         <ul className="navbar-nav ms-auto my-2 my-lg-0">
-                            <li className="nav-item"><a className="nav-link" href="#list">Crypto List</a></li>
-                            <li className="nav-item"><a className="nav-link me-lg-3" href="">Sign in</a></li>
+                            <li className="nav-item"><NavLink className="nav-link" to="/trade">Trade</NavLink></li>
+                            <li className="nav-item" id="sign-in"><NavLink className="nav-link me-lg-3" to="/signIn">Sign in</NavLink></li>
+                            <li className="nav-item" id="my-assets"><NavLink className="nav-link me-lg-3" to="/myAssets">My Assets</NavLink></li>
+                            <li className="nav-item" id="sign-out"><a className="nav-link me-lg-3" onClick={goSignOut} >Sign Out</a></li>
                         </ul>
-                        <button className="btn btn-primary rounded-pill px-3 mb-02 mb-lg-0" data-bs-toggle="modal" data-bs-target="#startModal">
+                        <button id="get-started" className="btn btn-primary rounded-pill px-3 mb-02 mb-lg-0" data-bs-toggle="modal" data-bs-target="#startModal">
                             <span className="d-flex align-items-center">
                                 <span className="small">Get started</span>
                             </span>
@@ -73,42 +171,37 @@ const Navigation = () => {
                     <div className="modal-content">
                         <div className="modal-header bg-gradient-primary-to-secondary p-4">
                             <h5 className="modal-title font-alt text-white" id="startModalLabel">Create account</h5>
-                            <button className="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button className="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close" id="closeModal"></button>
                         </div>
                         <div className="modal-body border-0 p-4">
-                            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                                <div className="form-floating mb-3">
-                                    <input className="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                    <label htmlFor="name">Full name*</label>
-                                    <div className="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                                </div>
-                                <div className="form-floating mb-3">
-                                    <input className="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                                    <label htmlFor="email">Email*</label>
-                                    <div className="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                    <div className="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                                </div>
-                                <div className="form-floating mb-3">
-                                    <input className="form-control" id="password" type="password" placeholder="(123) 456-7890" data-sb-validations="required" />
-                                    <label htmlFor="password">Password*</label>
-                                    <div className="invalid-feedback" data-sb-feedback="phone:required">A password is required.</div>
-                                </div>
-                                <div className="d-none" id="submitSuccessMessage">
-                                    <div className="text-center mb-3">
-                                        <div className="fw-bolder">Form submission successful!</div>
-                                        To activate this form, sign up at
-                                        <br />
-                                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                    </div>
-                                </div>
-                                <div className="d-none" id="submitErrorMessage"><div className="text-center text-danger mb-3">Error sending message!</div></div>
-                                <div className="d-grid"><button className="btn btn-primary rounded-pill btn-lg" id="submitButton" type="submit">Sign up</button></div>
-                            </form>
+                            <div className="form-floating mb-3">
+                                <input className="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" value={inputName}
+                                    onChange={e => setInputName(e.target.value)}
+                                />
+                                <label htmlFor="name">Full name*</label>
+                                <div className="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input className="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" value={inputEmail}
+                                    onChange={e => setInputEmail(e.target.value)}
+                                />
+                                <label htmlFor="email">Email*</label>
+                                <div className="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                                <div className="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input className="form-control" id="password" type="password" data-sb-validations="required" value={inputPassword}
+                                    onChange={e => setInputPassword(e.target.value)}
+                                />
+                                <label htmlFor="password">Password*</label>
+                                <div className="invalid-feedback" data-sb-feedback="password:required">A password is required.</div>
+                            </div>
+                            <div className="d-grid"><button className="btn btn-primary rounded-pill btn-lg" onClick={goSignUp}>Sign up</button></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

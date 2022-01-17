@@ -1,8 +1,8 @@
-
+import React from 'react';
 
 const Footer = () => {
     return (
-        <div>
+        <>
             {/* Footer */}
             <footer className="bg-light py-5" >
                 <div className="container px-4 px-lg-5">
@@ -10,7 +10,7 @@ const Footer = () => {
                     <div className="small text-center text-muted">(This demo site is for portfolio use only)</div>
                 </div>
             </footer >
-        </div>
+        </>
     )
 }
 
