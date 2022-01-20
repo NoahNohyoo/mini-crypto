@@ -10,6 +10,7 @@ import Section from "./components/Section";
 import SignIn from './components/SignIn';
 import Trade from './components/Trade';
 import MyAssets from './components/MyAssets';
+import Welcome from './components/Welcome';
 import Footer from "./components/Footer";
 import './App.css';
 
@@ -21,6 +22,9 @@ function App() {
         <Switch>
           <Route path="/signIn" exact>
             <SignIn />
+          </Route>
+          <Route path="/welcome" exact>
+            <Welcome />
           </Route>
           <Route path="/trade" exact>
             <Trade />

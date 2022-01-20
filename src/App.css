@@ -41,6 +41,7 @@
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
+  /* --bs-primary-rgb: 0, 204, 204; */
   --bs-primary-rgb: 244, 98, 58;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
@@ -11854,17 +11855,16 @@ header.masthead .h1 {
 
 .assets {
   position: relative;
-  left: 8%;
+  align-content: center;
+  /* left: 8%; */
 }
 
 .assets .assets-total-item {
-  width: 80%;
-  height: 20%;
   background-color: var(--bs-white);
   border: 1px solid gray;
   border-radius: 5px;
   align-items: center;
-  padding: 5%;
+  padding: 3%;
 }
 
 .assets .assets-total-item .trade-buttons {
@@ -11874,7 +11874,6 @@ header.masthead .h1 {
 }
 
 .assets .assets-section .assets-item {
-  width: 60%;
   background-color: var(--bs-white);
   border: 1px solid gray;
   border-radius: 5px;
@@ -11894,7 +11893,6 @@ header.masthead .h1 {
 
 .assets .assets-section {
   display: flex;
-  width: 80%;
   justify-content: space-between;
   padding: 0.5%;
 }

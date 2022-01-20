@@ -34,11 +34,9 @@ const SignIn = () => {
         setInfoPassword('');
         if (inputEmail === "" || inputEmail === undefined) {
             setInfoEmail("Please enter a email.");
-            // document.querySelector("inputEmail").focus();
             return;
         } else if (inputPassword === "" || inputPassword === undefined) {
             setInfoPassword("Please enter a password.")
-            // document.querySelector("inputPassword").focus();
             return;
         }
 
@@ -49,23 +47,21 @@ const SignIn = () => {
         };
         initForms();
         axios
-            // .post("http://169.254.119.81:8080/miniUser/login", send_param)
-            .post("https://mini-server.netlify.app/miniUser/login", send_param)
-            //정상 수행
+            // .post("http://localhost:8080/miniUser/login", send_param)
+            .post("http://174.6.121.176:8080/miniUser/login", send_param)
+            // .post("https://mini-server.netlify.app/miniUser/login", send_param)
             .then(returnData => {
                 if (returnData.data._id) {
                     console.log("login_id:" + returnData.data._id);
                     $.cookie("login_id", returnData.data._id, { expires: 1 });
                     $.cookie("login_seq", returnData.data.userSeq, { expires: 1 });
                     $.cookie("login_name", returnData.data.name, { expires: 1 });
-                    // alert(returnData.data.message);
                     toggle();
                     handleToMain();
                 } else {
                     alert(returnData.data.message);
                 }
             })
-            //에러
             .catch(err => {
                 console.log(err);
             });
@@ -94,9 +90,9 @@ const SignIn = () => {
                 <div className="container px-4 px-lg-5">
                     <div className="row gx-4 gx-lg-5 justify-content-center">
                         <div className="col-lg-6 text-center">
-                            <h2 className="text-white mt-0">Sign in to Mini Crypto</h2>
-                            <div className="mb-3 row">
-                                <label htmlFor="exampleFormControlInput1" className="col-sm-2 col-form-label text-white">Email</label>
+                            <h2 className="text-white mt-2">Sign in to Mini Crypto</h2>
+                            <div className="mb-3 row mt-4">
+                                <label htmlFor="exampleFormControlInput1" className="col-sm-2 col-form-label text-white ">Email</label>
                                 <div className="col-sm-8">
                                     <input autoFocus type="email" className="form-control" id="inputEmail" placeholder="name@example.com" value={inputEmail}
                                         onChange={e => setInputEmail(e.target.value)}
@@ -115,7 +111,7 @@ const SignIn = () => {
                             </div>
                             <div className="mb-3 row">
                                 <div className="col-sm-8 ">
-                                    <button type="button" className="btn btn-success" onClick={goSignIn}>SIGN IN</button>
+                                    <button type="button" className="btn btn-success rounded-pill px-5 mb-02 mb-lg-5" onClick={goSignIn}>SIGN IN</button>
                                 </div>
                             </div>
                         </div>

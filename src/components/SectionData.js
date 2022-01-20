@@ -36,7 +36,6 @@ const SectionData = () => {
         }
     };
 
-
     useEffect(() => {
         const timerId = setTimeout(() => {
             fetchUsers()

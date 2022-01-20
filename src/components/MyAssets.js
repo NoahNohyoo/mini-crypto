@@ -82,7 +82,8 @@ const MyAssets = () => {
             userSeq: userSeq,
         };
         await axios
-            .post("http://169.254.119.81:8080/miniAssets/retrieveAssets", send_param)
+            // .post("http://localhost:8080/miniAssets/retrieveAssets", send_param)
+            .post("http://174.6.121.176:8080/miniAssets/retrieveAssets", send_param)
             .then(returnData => {
                 if (returnData.data.message) {
                     // console.log(returnData.data.message);
@@ -134,66 +135,73 @@ const MyAssets = () => {
         <>
             {/* My Assets */}
             <section className="page-section bg-primary">
-                <div className="assets">
-                    <h2 className="text-white">My Assets in Mini Crypto</h2>
-                    <div className="assets-total-item">
-                        <div><span>Total Asset Value : </span>{checkLoading(totalPrice)}</div>
-                        <div>(<span>USD : </span>{checkLoading(usdPrice)})</div>
+                <div className="container px-8 px-lg-5">
+                    <div className="row gx-8 gx-lg-1 justify-content-center">
+                        <div className="col-lg-8 text-center">
+                            <div className="assets">
+                                <h2 className="text-white">My Assets in Mini Crypto</h2>
+                                <div className="assets-total-item">
+                                    <div><span>Total Asset Value : </span>{checkLoading(totalPrice)}</div>
+                                    <div>(<span>USD : </span>{checkLoading(usdPrice)})</div>
+                                </div>
+                                <section className="assets-section">
+                                    <div className="assets-item">
+                                        <span><img className="icon-symbol" src="/images/icons/icon_btc.png" /> BTC : {amountFixed(assets.btc)}</span>
+                                        (<span></span>{checkLoading(btcPrice)})
+                                    </div>
+                                    <div className="assets-item">
+                                        <span><img className="icon-symbol" src="/images/icons/icon_eth.png" /> ETH : {amountFixed(assets.eth)}</span>
+                                        (<span></span>{checkLoading(ethPrice)})
+                                    </div>
+                                    <div className="assets-item">
+                                        <span><img className="icon-symbol" src="/images/icons/icon_bnb.png" /> BNB : {amountFixed(assets.bnb)}</span>
+                                        (<span></span>{checkLoading(bnbPrice)})
+                                    </div>
+                                    <div className="assets-item">
+                                        <span><img className="icon-symbol" src="/images/icons/icon_sol.png" /> SOL : {amountFixed(assets.sol)}</span>
+                                        (<span></span>{checkLoading(solPrice)})
+                                    </div>
+                                </section>
+                                <section className="assets-section">
+                                    <div className="assets-item">
+                                        <span><img className="icon-symbol" src="/images/icons/icon_ada.png" /> ADA : {amountFixed(assets.ada)}</span>
+                                        (<span></span>{checkLoading(adaPrice)})
+                                    </div>
+                                    <div className="assets-item">
+                                        <span><img className="icon-symbol" src="/images/icons/icon_xrp.png" /> XRP : {amountFixed(assets.xrp)}</span>
+                                        (<span></span>{checkLoading(xrpPrice)})
+                                    </div>
+                                    <div className="assets-item">
+                                        <span><img className="icon-symbol" src="/images/icons/icon_luna.png" /> LUNA : {amountFixed(assets.luna)}</span>
+                                        (<span></span>{checkLoading(lunaPrice)})
+                                    </div>
+                                    <div className="assets-item">
+                                        <span><img className="icon-symbol" src="/images/icons/icon_dot.png" /> DOT : {amountFixed(assets.dot)}</span>
+                                        (<span></span>{checkLoading(dotPrice)})
+                                    </div>
+                                </section>
+                                <section className="assets-section">
+                                    <div className="assets-item">
+                                        <span><img className="icon-symbol" src="/images/icons/icon_doge.png" /> DOGE : {amountFixed(assets.doge)}</span>
+                                        (<span></span>{checkLoading(dogePrice)})
+                                    </div>
+
+                                    <div className="assets-item">
+                                        <span><img className="icon-symbol" src="/images/icons/icon_matic.png" /> MATIC : {amountFixed(assets.matic)}</span>
+                                        (<span></span>{checkLoading(maticPrice)})
+                                    </div>
+                                    <div className="assets-item">
+                                        <span><img className="icon-symbol" src="/images/icons/icon_link.png" /> LINK : {amountFixed(assets.link)}</span>
+                                        (<span></span>{checkLoading(linkPrice)})
+                                    </div>
+                                    <div className="assets-item">
+                                        <span><img className="icon-symbol" src="/images/icons/icon_uni.png" /> UNI : {amountFixed(assets.uni)}</span>
+                                        (<span></span>{checkLoading(uniPrice)})
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
                     </div>
-                    <section className="assets-section">
-                        <div className="assets-item">
-                            <span><img className="icon-symbol" src="/images/icons/icon_btc.png" />BTC : </span>{amountFixed(assets.btc)}
-                            (<span></span>{checkLoading(btcPrice)})
-                        </div>
-                        <div className="assets-item">
-                            <span><img className="icon-symbol" src="/images/icons/icon_eth.png" />ETH : </span>{amountFixed(assets.eth)}
-                            (<span></span>{checkLoading(ethPrice)})
-                        </div>
-                        <div className="assets-item">
-                            <span><img className="icon-symbol" src="/images/icons/icon_bnb.png" />BNB : </span>{amountFixed(assets.bnb)}
-                            (<span></span>{checkLoading(bnbPrice)})
-                        </div>
-                        <div className="assets-item">
-                            <span><img className="icon-symbol" src="/images/icons/icon_sol.png" />SOL : </span>{amountFixed(assets.sol)}
-                            (<span></span>{checkLoading(solPrice)})
-                        </div>
-                    </section>
-                    <section className="assets-section">
-                        <div className="assets-item">
-                            <span><img className="icon-symbol" src="/images/icons/icon_ada.png" />ADA : </span>{amountFixed(assets.ada)}
-                            (<span></span>{checkLoading(adaPrice)})
-                        </div>
-                        <div className="assets-item">
-                            <span><img className="icon-symbol" src="/images/icons/icon_xrp.png" />XRP : </span>{amountFixed(assets.xrp)}
-                            (<span></span>{checkLoading(xrpPrice)})
-                        </div>
-                        <div className="assets-item">
-                            <span><img className="icon-symbol" src="/images/icons/icon_luna.png" />LUNA : </span>{amountFixed(assets.luna)}
-                            (<span></span>{checkLoading(lunaPrice)})
-                        </div>
-                        <div className="assets-item">
-                            <span><img className="icon-symbol" src="/images/icons/icon_dot.png" />DOT : </span>{amountFixed(assets.dot)}
-                            (<span></span>{checkLoading(dotPrice)})
-                        </div>
-                    </section>
-                    <section className="assets-section">
-                        <div className="assets-item">
-                            <span><img className="icon-symbol" src="/images/icons/icon_doge.png" />DOGE : </span>{amountFixed(assets.doge)}
-                            (<span></span>{checkLoading(dogePrice)})
-                        </div>
-                        <div className="assets-item">
-                            <span><img className="icon-symbol" src="/images/icons/icon_matic.png" />MATIC : </span>{amountFixed(assets.matic)}
-                            (<span></span>{checkLoading(maticPrice)})
-                        </div>
-                        <div className="assets-item">
-                            <span><img className="icon-symbol" src="/images/icons/icon_link.png" />LINK : </span>{amountFixed(assets.link)}
-                            (<span></span>{checkLoading(linkPrice)})
-                        </div>
-                        <div className="assets-item">
-                            <span><img className="icon-symbol" src="/images/icons/icon_uni.png" />UNI : </span>{amountFixed(assets.uni)}
-                            (<span></span>{checkLoading(uniPrice)})
-                        </div>
-                    </section>
                 </div>
             </section>
         </>

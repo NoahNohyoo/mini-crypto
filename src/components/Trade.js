@@ -58,6 +58,10 @@ const Trade = () => {
         return loading ? <Spinner /> : '(You have $' + price + ')';
     }
 
+    const checkCrypto = () => {
+        return !selectedSymbol ? '' : `You have ${selectedSymbol} : ${amountFixed(cryptosCount[selectedIndex])}`;
+    }
+
     const refreshPrice = async () => {
         if (assets && price.length > 0) {
             const usd = assets.usd;
@@ -100,7 +104,7 @@ const Trade = () => {
             userSeq: userSeq,
         };
         await axios
-            .post("http://169.254.119.81:8080/miniAssets/retrieveAssets", send_param)
+            .post("http://174.6.121.176:8080/miniAssets/retrieveAssets", send_param)
             .then(returnData => {
 
                 if (returnData.data.message) {
@@ -191,7 +195,7 @@ const Trade = () => {
             amount: parseFloat(amountFixed(inputAmount)),
         };
         await axios
-            .post("http://169.254.119.81:8080/miniTrade/buy", send_param)
+            .post("http://174.6.121.176:8080/miniTrade/buy", send_param)
             .then(returnData => {
                 if (returnData.data.message) {
                     // console.log(returnData.data.message);
@@ -241,7 +245,7 @@ const Trade = () => {
             amount: parseFloat(amountFixed(inputAmount)),
         };
         await axios
-            .post("http://169.254.119.81:8080/miniTrade/sell", send_param)
+            .post("http://174.6.121.176:8080/miniTrade/sell", send_param)
             .then(returnData => {
                 if (returnData.data.message) {
                     // console.log(returnData.data.message);
@@ -284,7 +288,7 @@ const Trade = () => {
             setSelectedIndex(index);
             const symbolLower = symbol.toLowerCase();
             const imageUrl = `/images/icons/icon_${symbolLower}.png`;
-            $("#trade-crypto").html(`You have ${symbol} : ${amountFixed(cryptosCount[index])}`);
+            // $("#trade-crypto").html(`You have ${symbol} : ${amountFixed(cryptosCount[index])}`);
             $("#trade-symbol").html(`<img className="icon-symbol" src=${imageUrl} /><span> ${symbol} ${checkLoading(price)}</span>`);
         }
     }
@@ -307,76 +311,83 @@ const Trade = () => {
         <>
             {/* Trade */}
             <section className="page-section bg-primary">
-                <div className="assets">
-                    <h2 className="text-white">Trade in Mini Crypto</h2>
-                    <div className="assets-total-item">
-                        <div>
-                            {/* <div id="trade-buy"><button className="" >Buy</button></div>
+                <div className="container px-4 px-lg-5">
+                    <div className="row gx-4 gx-lg-5 justify-content-center">
+                        <div className="col-lg-6 text-center">
+                            <div className="assets">
+                                <h2 className="text-white">Trade in Mini Crypto</h2>
+                                <div className="assets-total-item">
+                                    <div>
+                                        {/* <div id="trade-buy"><button className="" >Buy</button></div>
                             <div id="trade-sell"><button className="">Sell</button></div> */}
-                            <div id="trade-symbol" className="text-success mb-lg-2">Please select a category below.</div>
-                            <div id="trade-quantity">
-                                Quantity <input type="number" min="0" className="mb-lg-2 form-control" id="inputQuantity" value={inputQuantity}
-                                    onChange={e => setQuantity(e.target.value)}
-                                />
+                                        <div id="trade-symbol" className="text-success mb-lg-2">Please select a category below.</div>
+                                        <div id="trade-quantity">
+                                            Quantity <input type="number" min="0" className="mb-lg-2 form-control" id="inputQuantity" value={inputQuantity}
+                                                onChange={e => setQuantity(e.target.value)}
+                                            />
+                                        </div>
+                                        <div id="trade-amount">
+                                            Amount <input type="number" min="0" className="mb-lg-2 form-control" id="inputAmount" value={inputAmount}
+                                                onChange={e => setAmount(e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="trade-buttons">
+                                            <div id="trade-buy-button"><button className="btn btn-primary rounded-pill px-4 mb-02 mb-lg-2 me-lg-5" onClick={goBuy}>BUY</button></div>
+                                            <div id="trade-sell-button"><button className="btn btn-info rounded-pill px-4 mb-02 mb-lg-2 me-lg-5" onClick={goSell}>SELL</button></div>
+                                            <div id="trade-sell-button"><button className="btn btn-success rounded-pill px-3 mb-02 mb-lg-2 me-lg-5" onClick={inputClear}>Clear</button></div>
+                                        </div>
+                                        <div id="trade-usd" className="text-primary mb-lg-2">{checkUSD(usdPrice)}</div>
+                                        <div id="trade-crypto" className="text-secondary mb-lg-2">{checkCrypto()}</div>
+                                        <div id="trade-info" className="text-danger">{info}</div>
+                                    </div>
+                                </div>
+                                <section className="assets-section">
+                                    <div className="assets-item btn-area" onClick={e => setTradeTag("BTC", price[0].price, 0)}>
+                                        <span><img className="icon-symbol" src="/images/icons/icon_btc.png" /> BTC {checkLoading(btcPrice)}</span>
+                                    </div>
+                                    <div className="assets-item btn-area" onClick={e => setTradeTag("ETH", price[1].price, 1)}>
+                                        <span><img className="icon-symbol" src="/images/icons/icon_eth.png" /> ETH {checkLoading(ethPrice)}</span>
+                                    </div>
+                                    <div className="assets-item btn-area" onClick={e => setTradeTag("BNB", price[2].price, 2)}>
+                                        <span><img className="icon-symbol" src="/images/icons/icon_bnb.png" /> BNB {checkLoading(bnbPrice)}</span>
+                                    </div>
+                                    <div className="assets-item btn-area" onClick={e => setTradeTag("SOL", price[3].price, 3)}>
+                                        <span><img className="icon-symbol" src="/images/icons/icon_sol.png" /> SOL {checkLoading(solPrice)}</span>
+                                    </div>
+                                </section>
+                                <section className="assets-section">
+                                    <div className="assets-item btn-area" onClick={e => setTradeTag("ADA", price[4].price, 4)}>
+                                        <span><img className="icon-symbol" src="/images/icons/icon_ada.png" /> ADA {checkLoading(adaPrice)}</span>
+                                    </div>
+                                    <div className="assets-item btn-area" onClick={e => setTradeTag("XRP", price[5].price, 5)}>
+                                        <span><img className="icon-symbol" src="/images/icons/icon_xrp.png" /> XRP {checkLoading(xrpPrice)}</span>
+                                    </div>
+                                    <div className="assets-item btn-area" onClick={e => setTradeTag("LUNA", price[6].price, 6)}>
+                                        <span><img className="icon-symbol" src="/images/icons/icon_luna.png" /> LUNA {checkLoading(lunaPrice)}</span>
+                                    </div>
+                                    <div className="assets-item btn-area" onClick={e => setTradeTag("DOT", price[7].price, 7)}>
+                                        <span><img className="icon-symbol" src="/images/icons/icon_dot.png" /> DOT {checkLoading(dotPrice)}</span>
+                                    </div>
+                                </section>
+                                <section className="assets-section">
+                                    <div className="assets-item btn-area" onClick={e => setTradeTag("DOGE", price[8].price, 8)}>
+                                        <span><img className="icon-symbol" src="/images/icons/icon_doge.png" /> DOGE {checkLoading(dogePrice)}</span>
+                                    </div>
+                                    <div className="assets-item btn-area" onClick={e => setTradeTag("MATIC", price[9].price, 9)}>
+                                        <span><img className="icon-symbol" src="/images/icons/icon_matic.png" /> MATIC {checkLoading(maticPrice)}</span>
+                                    </div>
+                                    <div className="assets-item btn-area" onClick={e => setTradeTag("LINK", price[10].price, 10)}>
+                                        <span><img className="icon-symbol" src="/images/icons/icon_link.png" /> LINK {checkLoading(linkPrice)}</span>
+                                    </div>
+                                    <div className="assets-item btn-area" onClick={e => setTradeTag("UNI", price[11].price, 11)}>
+                                        <span><img className="icon-symbol" src="/images/icons/icon_uni.png" /> UNI {checkLoading(uniPrice)}</span>
+                                    </div>
+                                </section>
                             </div>
-                            <div id="trade-amount">
-                                Amount <input type="number" min="0" className="mb-lg-2 form-control" id="inputAmount" value={inputAmount}
-                                    onChange={e => setAmount(e.target.value)}
-                                />
-                            </div>
-                            <div className="trade-buttons">
-                                <div id="trade-buy-button"><button className="btn btn-primary rounded-pill px-4 mb-02 mb-lg-2 me-lg-5" onClick={goBuy}>BUY</button></div>
-                                <div id="trade-sell-button"><button className="btn btn-info rounded-pill px-4 mb-02 mb-lg-2 me-lg-5" onClick={goSell}>SELL</button></div>
-                                <div id="trade-sell-button"><button className="btn btn-success rounded-pill px-3 mb-02 mb-lg-2 me-lg-5" onClick={inputClear}>Clear</button></div>
-                            </div>
-                            <div id="trade-usd" className="text-primary mb-lg-2">{checkUSD(usdPrice)}</div>
-                            <div id="trade-crypto" className="text-secondary mb-lg-2"></div>
-                            <div id="trade-info" className="text-danger">{info}</div>
                         </div>
                     </div>
-                    <section className="assets-section">
-                        <div className="assets-item btn-area" onClick={e => setTradeTag("BTC", price[0].price, 0)}>
-                            <span><img className="icon-symbol" src="/images/icons/icon_btc.png" />BTC {checkLoading(btcPrice)}</span>
-                        </div>
-                        <div className="assets-item btn-area" onClick={e => setTradeTag("ETH", price[1].price, 1)}>
-                            <span><img className="icon-symbol" src="/images/icons/icon_eth.png" />ETH {checkLoading(ethPrice)}</span>
-                        </div>
-                        <div className="assets-item btn-area" onClick={e => setTradeTag("BNB", price[2].price, 2)}>
-                            <span><img className="icon-symbol" src="/images/icons/icon_bnb.png" />BNB {checkLoading(bnbPrice)}</span>
-                        </div>
-                        <div className="assets-item btn-area" onClick={e => setTradeTag("SOL", price[3].price, 3)}>
-                            <span><img className="icon-symbol" src="/images/icons/icon_sol.png" />SOL {checkLoading(solPrice)}</span>
-                        </div>
-                    </section>
-                    <section className="assets-section">
-                        <div className="assets-item btn-area" onClick={e => setTradeTag("ADA", price[4].price, 4)}>
-                            <span><img className="icon-symbol" src="/images/icons/icon_ada.png" />ADA {checkLoading(adaPrice)}</span>
-                        </div>
-                        <div className="assets-item btn-area" onClick={e => setTradeTag("XRP", price[5].price, 5)}>
-                            <span><img className="icon-symbol" src="/images/icons/icon_xrp.png" />XRP {checkLoading(xrpPrice)}</span>
-                        </div>
-                        <div className="assets-item btn-area" onClick={e => setTradeTag("LUNA", price[6].price, 6)}>
-                            <span><img className="icon-symbol" src="/images/icons/icon_luna.png" />LUNA {checkLoading(lunaPrice)}</span>
-                        </div>
-                        <div className="assets-item btn-area" onClick={e => setTradeTag("DOT", price[7].price, 7)}>
-                            <span><img className="icon-symbol" src="/images/icons/icon_dot.png" />DOT {checkLoading(dotPrice)}</span>
-                        </div>
-                    </section>
-                    <section className="assets-section">
-                        <div className="assets-item btn-area" onClick={e => setTradeTag("DOGE", price[8].price, 8)}>
-                            <span><img className="icon-symbol" src="/images/icons/icon_doge.png" />DOGE {checkLoading(dogePrice)}</span>
-                        </div>
-                        <div className="assets-item btn-area" onClick={e => setTradeTag("MATIC", price[9].price, 9)}>
-                            <span><img className="icon-symbol" src="/images/icons/icon_matic.png" />MATIC {checkLoading(maticPrice)}</span>
-                        </div>
-                        <div className="assets-item btn-area" onClick={e => setTradeTag("LINK", price[10].price, 10)}>
-                            <span><img className="icon-symbol" src="/images/icons/icon_link.png" />LINK {checkLoading(linkPrice)}</span>
-                        </div>
-                        <div className="assets-item btn-area" onClick={e => setTradeTag("UNI", price[11].price, 11)}>
-                            <span><img className="icon-symbol" src="/images/icons/icon_uni.png" />UNI {checkLoading(uniPrice)}</span>
-                        </div>
-                    </section>
                 </div>
+
             </section>
         </>
     )

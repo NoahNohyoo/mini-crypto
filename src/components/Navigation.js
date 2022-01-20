@@ -27,6 +27,9 @@ const Navigation = () => {
     const handleToSignIn = () => {
         history.push("/signIn");
     }
+    const handleToWelcome = () => {
+        history.push("/welcome");
+    }
 
     const goSignUp = async () => {
         const joinName = inputName;
@@ -39,12 +42,10 @@ const Navigation = () => {
         setInfoName("");
         setInfoPassword("");
         if (joinName === "" || joinName === undefined) {
-            setInfoName("Please enter your name.")
-            // this.joinName.focus();
+            setInfoName("Please enter your name.");
             return;
         } else if (joinEmail === "" || joinEmail === undefined) {
-            setInfoEmail("Please enter a email.")
-            // this.joinEmail.focus();
+            setInfoEmail("Please enter a email.");
             return;
         } else if (
             joinEmail.match(regExp) === null ||
@@ -52,11 +53,9 @@ const Navigation = () => {
         ) {
             setInfoEmail("Please enter a valid email format.");
             setInputEmail("");
-            // this.joinEmail.focus();
             return;
         } else if (joinPw === "" || joinPw === undefined) {
             setInfoPassword("Please enter a password.");
-            // this.joinPw.focus();
             return;
         } else if (
             joinPw.match(regExp2) === null ||
@@ -64,7 +63,6 @@ const Navigation = () => {
         ) {
             setInfoPassword("Please enter a password of 8 to 16 digits including numbers, letters and special characters.")
             setInputPassword("");
-            // this.joinPw.focus();
             return;
         }
 
@@ -75,26 +73,24 @@ const Navigation = () => {
             password: joinPw
         };
         axios
-            .post("http://169.254.119.81:8080/miniUser/join", send_param)
-            //정상 수행
+            .post("http://174.6.121.176:8080/miniUser/join", send_param)
             .then(returnData => {
                 if (returnData.data.message) {
-                    // alert(returnData.data.message);
                     if (returnData.data.dupYn === "1") {
+                        setInfoEmail("Duplicate email. Please enter another email.");
                         setInputEmail("");
-                        // this.joinEmail.focus();
                     } else {
                         setInputName("");
                         setInputEmail("");
                         setInputPassword("");
                         $("[data-bs-dismiss=modal]").trigger({ type: "click" });
-                        handleToSignIn();
+                        handleToWelcome();
+                        // handleToSignIn();
                     }
                 } else {
                     console.log("failed sign up");
                 }
             })
-            //에러
             .catch(err => {
                 console.log(err);
             });
@@ -102,7 +98,7 @@ const Navigation = () => {
 
     const goSignOut = async () => {
         axios
-            .get("http://169.254.119.81:8080/miniUser/logout", {
+            .get("http://174.6.121.176:8080/miniUser/logout", {
                 headers
             })
             .then(returnData => {
