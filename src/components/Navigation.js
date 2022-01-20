@@ -11,6 +11,9 @@ const Navigation = () => {
     const [inputName, setInputName] = useState('');
     const [inputEmail, setInputEmail] = useState('');
     const [inputPassword, setInputPassword] = useState('');
+    const [infoName, setInfoName] = useState('');
+    const [infoEmail, setInfoEmail] = useState('');
+    const [infoPassword, setInfoPassword] = useState('');
 
     const [condition, setCondition] = useState(false);
     const toggle = () => setCondition(!condition);
@@ -31,30 +34,35 @@ const Navigation = () => {
         const joinPw = inputPassword;
         const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
         const regExp2 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
-        if (joinEmail === "" || joinEmail === undefined) {
+
+        setInfoEmail("");
+        setInfoName("");
+        setInfoPassword("");
+        if (joinName === "" || joinName === undefined) {
+            setInfoName("Please enter your name.")
+            // this.joinName.focus();
+            return;
+        } else if (joinEmail === "" || joinEmail === undefined) {
+            setInfoEmail("Please enter a email.")
             // this.joinEmail.focus();
             return;
         } else if (
             joinEmail.match(regExp) === null ||
             joinEmail.match(regExp) === undefined
         ) {
-            alert("이메일 형식에 맞게 입력해주세요.");
+            setInfoEmail("Please enter a valid email format.");
             setInputEmail("");
             // this.joinEmail.focus();
             return;
-        } else if (joinName === "" || joinName === undefined) {
-            alert("이름을 입력해주세요.");
-            // this.joinName.focus();
-            return;
         } else if (joinPw === "" || joinPw === undefined) {
-            alert("비밀번호를 입력해주세요.");
+            setInfoPassword("Please enter a password.");
             // this.joinPw.focus();
             return;
         } else if (
             joinPw.match(regExp2) === null ||
             joinPw.match(regExp2) === undefined
         ) {
-            alert("비밀번호를 숫자와 문자, 특수문자 포함 8~16자리로 입력해주세요.");
+            setInfoPassword("Please enter a password of 8 to 16 digits including numbers, letters and special characters.")
             setInputPassword("");
             // this.joinPw.focus();
             return;
@@ -72,7 +80,6 @@ const Navigation = () => {
             .then(returnData => {
                 if (returnData.data.message) {
                     // alert(returnData.data.message);
-                    //이메일 중복 체크
                     if (returnData.data.dupYn === "1") {
                         setInputEmail("");
                         // this.joinEmail.focus();
@@ -177,22 +184,21 @@ const Navigation = () => {
                                     onChange={e => setInputName(e.target.value)}
                                 />
                                 <label htmlFor="name">Full name*</label>
-                                <div className="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                <div className="text-danger">{infoName}</div>
                             </div>
                             <div className="form-floating mb-3">
                                 <input className="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" value={inputEmail}
                                     onChange={e => setInputEmail(e.target.value)}
                                 />
                                 <label htmlFor="email">Email*</label>
-                                <div className="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div className="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                                <div className="text-danger">{infoEmail}</div>
                             </div>
                             <div className="form-floating mb-3">
                                 <input className="form-control" id="password" type="password" data-sb-validations="required" value={inputPassword}
                                     onChange={e => setInputPassword(e.target.value)}
                                 />
                                 <label htmlFor="password">Password*</label>
-                                <div className="invalid-feedback" data-sb-feedback="password:required">A password is required.</div>
+                                <div className="text-danger">{infoPassword}</div>
                             </div>
                             <div className="d-grid"><button className="btn btn-primary rounded-pill btn-lg" onClick={goSignUp}>Sign up</button></div>
                         </div>

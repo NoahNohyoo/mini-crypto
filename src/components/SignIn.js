@@ -8,6 +8,8 @@ const headers = { withCredentials: true };
 const SignIn = () => {
     const [inputEmail, setInputEmail] = useState('');
     const [inputPassword, setInputPassword] = useState('');
+    const [infoEmail, setInfoEmail] = useState('');
+    const [infoPassword, setInfoPassword] = useState('');
 
     const [condition, setCondition] = useState(false);
     const toggle = () => setCondition(!condition);
@@ -18,6 +20,8 @@ const SignIn = () => {
     const initForms = () => {
         setInputEmail('');
         setInputPassword('');
+        setInfoEmail('');
+        setInfoPassword('');
     }
 
     const history = useHistory();
@@ -26,13 +30,14 @@ const SignIn = () => {
     }
 
     const goSignIn = async () => {
-
+        setInfoEmail('');
+        setInfoPassword('');
         if (inputEmail === "" || inputEmail === undefined) {
-            alert("이메일 주소를 입력해주세요.");
+            setInfoEmail("Please enter a email.");
             // document.querySelector("inputEmail").focus();
             return;
         } else if (inputPassword === "" || inputPassword === undefined) {
-            alert("비밀번호를 입력해주세요.");
+            setInfoPassword("Please enter a password.")
             // document.querySelector("inputPassword").focus();
             return;
         }
@@ -96,6 +101,7 @@ const SignIn = () => {
                                     <input autoFocus type="email" className="form-control" id="inputEmail" placeholder="name@example.com" value={inputEmail}
                                         onChange={e => setInputEmail(e.target.value)}
                                     />
+                                    <div className="text-white" >{infoEmail}</div>
                                 </div>
                             </div>
                             <div className="mb-3 row">
@@ -104,6 +110,7 @@ const SignIn = () => {
                                     <input type="password" className="form-control" id="inputPassword" value={inputPassword}
                                         onChange={e => setInputPassword(e.target.value)}
                                     />
+                                    <div className="text-white" >{infoPassword}</div>
                                 </div>
                             </div>
                             <div className="mb-3 row">
