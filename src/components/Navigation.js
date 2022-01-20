@@ -5,7 +5,6 @@ import { Link, NavLink } from 'react-router-dom';
 import axios from "axios";
 import $ from "jquery";
 import { } from "jquery.cookie";
-axios.defaults.withCredentials = false;
 const headers = { withCredentials: true };
 
 const Navigation = () => {
@@ -26,7 +25,7 @@ const Navigation = () => {
         history.push("/signIn");
     }
 
-    const goSignUp = () => {
+    const goSignUp = async () => {
         const joinName = inputName;
         const joinEmail = inputEmail;
         const joinPw = inputPassword;
@@ -68,7 +67,7 @@ const Navigation = () => {
             password: joinPw
         };
         axios
-            .post("http://169.254.119.81:8080/member/join", send_param)
+            .post("http://169.254.119.81:8080/miniUser/join", send_param)
             //정상 수행
             .then(returnData => {
                 if (returnData.data.message) {
@@ -94,21 +93,21 @@ const Navigation = () => {
             });
     }
 
-    const goSignOut = () => {
+    const goSignOut = async () => {
         axios
-            .get("http://169.254.119.81:8080/member/logout", {
+            .get("http://169.254.119.81:8080/miniUser/logout", {
                 headers
             })
             .then(returnData => {
                 if (returnData.data.message) {
                     $.removeCookie("login_id");
+                    $.removeCookie("login_seq");
+                    $.removeCookie("login_name");
                     toggle();
                     handleToMain();
                 }
             });
     }
-
-
 
     useEffect(() => {
         if ($.cookie("login_id")) {
@@ -116,6 +115,7 @@ const Navigation = () => {
             $("#get-started").hide();
             $("#sign-out").show();
             $("#my-assets").show();
+            $("#my-assets-tag").text($.cookie("login_name") + "'s Assets");
         } else {
             $("#sign-out").hide();
             $("#my-assets").hide();
@@ -123,8 +123,6 @@ const Navigation = () => {
             $("#get-started").show();
         }
     })
-
-
 
     window.addEventListener('DOMContentLoaded', event => {
 
@@ -154,7 +152,7 @@ const Navigation = () => {
                         <ul className="navbar-nav ms-auto my-2 my-lg-0">
                             <li className="nav-item"><NavLink className="nav-link" to="/trade">Trade</NavLink></li>
                             <li className="nav-item" id="sign-in"><NavLink className="nav-link me-lg-3" to="/signIn">Sign in</NavLink></li>
-                            <li className="nav-item" id="my-assets"><NavLink className="nav-link me-lg-3" to="/myAssets">My Assets</NavLink></li>
+                            <li className="nav-item" id="my-assets"><NavLink className="nav-link me-lg-3" to="/myAssets" id="my-assets-tag"></NavLink></li>
                             <li className="nav-item" id="sign-out"><a className="nav-link me-lg-3" onClick={goSignOut} >Sign Out</a></li>
                         </ul>
                         <button id="get-started" className="btn btn-primary rounded-pill px-3 mb-02 mb-lg-0" data-bs-toggle="modal" data-bs-target="#startModal">

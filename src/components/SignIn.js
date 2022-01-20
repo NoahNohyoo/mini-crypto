@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import $ from "jquery";
 import { } from "jquery.cookie";
-axios.defaults.withCredentials = false;
 const headers = { withCredentials: true };
 
 const SignIn = () => {
@@ -26,7 +25,7 @@ const SignIn = () => {
         history.push("/");
     }
 
-    const goSignIn = () => {
+    const goSignIn = async () => {
 
         if (inputEmail === "" || inputEmail === undefined) {
             alert("이메일 주소를 입력해주세요.");
@@ -45,13 +44,14 @@ const SignIn = () => {
         };
         initForms();
         axios
-            .post("http://169.254.119.81:8080/member/login", send_param)
+            .post("http://169.254.119.81:8080/miniUser/login", send_param)
             //정상 수행
             .then(returnData => {
-                if (returnData.data.message) {
+                if (returnData.data._id) {
                     console.log("login_id:" + returnData.data._id);
                     $.cookie("login_id", returnData.data._id, { expires: 1 });
-                    $.cookie("login_email", returnData.data.email, { expires: 1 });
+                    $.cookie("login_seq", returnData.data.userSeq, { expires: 1 });
+                    $.cookie("login_name", returnData.data.name, { expires: 1 });
                     // alert(returnData.data.message);
                     toggle();
                     handleToMain();
@@ -71,6 +71,7 @@ const SignIn = () => {
             $("#get-started").hide();
             $("#sign-out").show();
             $("#my-assets").show();
+            $("#my-assets-tag").text($.cookie("login_name") + "'s Assets");
         } else {
             $("#sign-out").hide();
             $("#my-assets").hide();

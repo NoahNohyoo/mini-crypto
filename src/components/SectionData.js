@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import Spinner from './Spinner';
 import axios from 'axios';
 
 const SectionData = () => {
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
     const cryptosCode = ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'SOLUSDT', 'ADAUSDT', 'XRPUSDT', 'LUNAUSDT', 'DOTUSDT', 'DOGEUSDT', 'MATICUSDT', 'LINKUSDT', 'UNIUSDT'];
     const cryptosName = ['Bitcoin', 'Ethereum', 'BNB', 'Solana', 'Cardano', 'XRP', 'Terra', 'Polkadot', 'Dogecoin', 'Polygon', 'Chainlink', 'Uniswap'];
     const [cryptos, setCryptos] = useState([]);
@@ -15,11 +15,6 @@ const SectionData = () => {
 
     const fetchUsers = async () => {
         try {
-            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-            setError(null);
-            // loading 상태를 true 로 바꿉니다.
-            setLoading(true);
-
             const response = await axios.get(
                 'https://api.binance.com/api/v1/ticker/allPrices'
             );
@@ -34,11 +29,11 @@ const SectionData = () => {
                 cryptoList.push(data);
             })
             setCryptos(cryptoList);
+            setLoading(false);
 
         } catch (e) {
-            setError(e);
+            console.log(e);
         }
-        setLoading(false);
     };
 
 
@@ -49,7 +44,7 @@ const SectionData = () => {
         return () => clearTimeout(timerId);
     }, [cryptos]);
 
-    // if (loading) return <div>Data is loading...</div>;
+    if (loading) return <Spinner />;
 
     return (
         <>
@@ -58,7 +53,6 @@ const SectionData = () => {
                     <span className="item-no">{info.idx}</span>
                     <span className="item-name"><img className="icon-symbol" src={info.imgUrl} /> {info.name} {info.symbol}</span>
                     <span className="item-price">{info.amount}</span>
-                    <span className="item-trade"><button className="btn btn-primary rounded-pill px-3 mb-02 mb-lg-0">Buy</button></span>
                 </li>
             ))}
 

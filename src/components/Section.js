@@ -17,7 +17,6 @@ const Section = () => {
                                     <span className="item-no">#</span>
                                     <span className="item-name">Name</span>
                                     <span className="item-price">Price</span>
-                                    <span className="item-trade">Trade</span>
                                 </li>
                                 <SectionData />
                             </ul>
