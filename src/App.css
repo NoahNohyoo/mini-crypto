@@ -37,6 +37,7 @@
   --bs-secondary: #6c757d;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
+  --bs-default: #1532d4;
   --bs-warning: #ffc107;
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
@@ -8130,6 +8131,11 @@ fieldset:disabled .btn {
   color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
 }
 
+.text-default {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-default), var(--bs-text-opacity)) !important;
+}
+
 .text-body {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-body-color-rgb), var(--bs-text-opacity)) !important;
@@ -11895,4 +11901,8 @@ header.masthead .h1 {
   display: flex;
   justify-content: space-between;
   padding: 0.5%;
+}
+
+#trade-info {
+  font-weight: bold;
 }
