@@ -44,7 +44,8 @@ const SignIn = () => {
         };
         initForms();
         axios
-            .post("http://169.254.119.81:8080/miniUser/login", send_param)
+            // .post("http://169.254.119.81:8080/miniUser/login", send_param)
+            .post("https://mini-server.netlify.app/miniUser/login", send_param)
             //정상 수행
             .then(returnData => {
                 if (returnData.data._id) {
