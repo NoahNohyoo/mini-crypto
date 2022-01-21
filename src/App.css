@@ -11885,7 +11885,8 @@ header.masthead .h1 {
   border-radius: 5px;
   display: flex;
   align-items: center;
-  padding: 3%;
+  padding: 4%;
+  width: 25%;
 }
 
 .assets .assets-section .btn-area {
@@ -11893,7 +11894,7 @@ header.masthead .h1 {
 }
 
 .assets .assets-item .icon-symbol {
-  width: 40px;
+  width: 40%;
   border-radius: 10%;
 }
 
@@ -11903,6 +11904,6 @@ header.masthead .h1 {
   padding: 0.5%;
 }
 
-#trade-info {
+.wrap-bold {
   font-weight: bold;
 }

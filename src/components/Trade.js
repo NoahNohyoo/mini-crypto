@@ -336,9 +336,9 @@ const Trade = () => {
                                             <div id="trade-sell-button"><button className="btn btn-info rounded-pill px-4 mb-02 mb-lg-2 me-lg-5" onClick={goSell}>SELL</button></div>
                                             <div id="trade-sell-button"><button className="btn btn-success rounded-pill px-3 mb-02 mb-lg-2 me-lg-5" onClick={inputClear}>Clear</button></div>
                                         </div>
-                                        <div id="trade-usd" className="text-primary mb-lg-2">{checkUSD(usdPrice)}</div>
+                                        <div id="trade-usd" className="text-default mb-lg-2">{checkUSD(usdPrice)}</div>
                                         <div id="trade-crypto" className="text-secondary mb-lg-2">{checkCrypto()}</div>
-                                        <div id="trade-info" className="text-danger">{info}</div>
+                                        <div id="trade-info" className="text-danger"><span className="wrap-bold">{info}</span></div>
                                     </div>
                                 </div>
                                 <section className="assets-section">

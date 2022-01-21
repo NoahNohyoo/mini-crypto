@@ -24,6 +24,10 @@ const SignIn = () => {
         setInfoPassword('');
     }
 
+    const keyEnter = (e) => {
+        if (e.code === "Enter") goSignIn();
+    }
+
     const history = useHistory();
     const handleToMain = () => {
         history.push("/");
@@ -59,7 +63,7 @@ const SignIn = () => {
                     toggle();
                     handleToMain();
                 } else {
-                    alert(returnData.data.message);
+                    setInfoPassword(returnData.data.message);
                 }
             })
             .catch(err => {
@@ -95,18 +99,18 @@ const SignIn = () => {
                                 <label htmlFor="exampleFormControlInput1" className="col-sm-2 col-form-label text-white ">Email</label>
                                 <div className="col-sm-8">
                                     <input autoFocus type="email" className="form-control" id="inputEmail" placeholder="name@example.com" value={inputEmail}
-                                        onChange={e => setInputEmail(e.target.value)}
+                                        onChange={e => setInputEmail(e.target.value)} onKeyPress={e => keyEnter(e)}
                                     />
-                                    <div className="text-white" >{infoEmail}</div>
+                                    <div className="text-white mt-2" >{infoEmail}</div>
                                 </div>
                             </div>
                             <div className="mb-3 row">
                                 <label htmlFor="inputPassword" className="col-sm-2 col-form-label text-white">Password</label>
                                 <div className="col-sm-8">
                                     <input type="password" className="form-control" id="inputPassword" value={inputPassword}
-                                        onChange={e => setInputPassword(e.target.value)}
+                                        onChange={e => setInputPassword(e.target.value)} onKeyPress={e => keyEnter(e)}
                                     />
-                                    <div className="text-white" >{infoPassword}</div>
+                                    <div className="text-white mt-2" >{infoPassword}</div>
                                 </div>
                             </div>
                             <div className="mb-3 row">

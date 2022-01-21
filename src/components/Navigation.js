@@ -24,11 +24,12 @@ const Navigation = () => {
     const handleToMain = () => {
         history.push("/");
     }
-    const handleToSignIn = () => {
-        history.push("/signIn");
-    }
     const handleToWelcome = () => {
         history.push("/welcome");
+    }
+
+    const keyEnter = (e) => {
+        if (e.code === "Enter") goSignUp();
     }
 
     const goSignUp = async () => {
@@ -36,7 +37,7 @@ const Navigation = () => {
         const joinEmail = inputEmail;
         const joinPw = inputPassword;
         const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-        const regExp2 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
+        const regExp2 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,16}$/;
 
         setInfoEmail("");
         setInfoName("");
@@ -61,7 +62,7 @@ const Navigation = () => {
             joinPw.match(regExp2) === null ||
             joinPw.match(regExp2) === undefined
         ) {
-            setInfoPassword("Please enter a password of 8 to 16 digits including numbers, letters and special characters.")
+            setInfoPassword("Please enter a password of 4 to 16 digits including numbers, letters and special characters.")
             setInputPassword("");
             return;
         }
@@ -85,7 +86,6 @@ const Navigation = () => {
                         setInputPassword("");
                         $("[data-bs-dismiss=modal]").trigger({ type: "click" });
                         handleToWelcome();
-                        // handleToSignIn();
                     }
                 } else {
                     console.log("failed sign up");
@@ -177,21 +177,21 @@ const Navigation = () => {
                         <div className="modal-body border-0 p-4">
                             <div className="form-floating mb-3">
                                 <input className="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" value={inputName}
-                                    onChange={e => setInputName(e.target.value)}
+                                    onChange={e => setInputName(e.target.value)} onKeyPress={e => keyEnter(e)}
                                 />
                                 <label htmlFor="name">Full name*</label>
                                 <div className="text-danger">{infoName}</div>
                             </div>
                             <div className="form-floating mb-3">
                                 <input className="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" value={inputEmail}
-                                    onChange={e => setInputEmail(e.target.value)}
+                                    onChange={e => setInputEmail(e.target.value)} onKeyPress={e => keyEnter(e)}
                                 />
                                 <label htmlFor="email">Email*</label>
                                 <div className="text-danger">{infoEmail}</div>
                             </div>
                             <div className="form-floating mb-3">
                                 <input className="form-control" id="password" type="password" data-sb-validations="required" value={inputPassword}
-                                    onChange={e => setInputPassword(e.target.value)}
+                                    onChange={e => setInputPassword(e.target.value)} onKeyPress={e => keyEnter(e)}
                                 />
                                 <label htmlFor="password">Password*</label>
                                 <div className="text-danger">{infoPassword}</div>
