@@ -16,10 +16,10 @@ const Trade = () => {
     if (!userSeq) handleToSignIn();
 
 
+    const cryptosCode = ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'SOLUSDT', 'ADAUSDT', 'XRPUSDT', 'LUNAUSDT', 'DOTUSDT', 'DOGEUSDT', 'MATICUSDT', 'LINKUSDT', 'UNIUSDT'];
     const [loading, setLoading] = useState(true);
     const [assets, setAssets] = useState({});
     const [price, setPrice] = useState([]);
-    const cryptosCode = ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'SOLUSDT', 'ADAUSDT', 'XRPUSDT', 'LUNAUSDT', 'DOTUSDT', 'DOGEUSDT', 'MATICUSDT', 'LINKUSDT', 'UNIUSDT'];
     const [cryptosCount, setCryptosCount] = useState([]);
     const [cryptos, setCryptos] = useState([]);
     const [usdPrice, setUsdPrice] = useState(0);
@@ -55,7 +55,7 @@ const Trade = () => {
     }
 
     const checkUSD = (price) => {
-        return loading ? <Spinner /> : '(You have cyber USD $' + price + ')';
+        return loading ? <Spinner /> : '(You have cyber $' + price + ')';
     }
 
     const checkCrypto = () => {

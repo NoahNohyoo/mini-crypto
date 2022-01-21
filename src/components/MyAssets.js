@@ -6,10 +6,10 @@ import Spinner from './Spinner';
 const headers = { withCredentials: true };
 
 const MyAssets = () => {
+    const cryptosCode = ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'SOLUSDT', 'ADAUSDT', 'XRPUSDT', 'LUNAUSDT', 'DOTUSDT', 'DOGEUSDT', 'MATICUSDT', 'LINKUSDT', 'UNIUSDT'];
     const [loading, setLoading] = useState(true);
     const [assets, setAssets] = useState({});
     const [price, setPrice] = useState([]);
-    const cryptosCode = ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'SOLUSDT', 'ADAUSDT', 'XRPUSDT', 'LUNAUSDT', 'DOTUSDT', 'DOGEUSDT', 'MATICUSDT', 'LINKUSDT', 'UNIUSDT'];
     const [cryptos, setCryptos] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [usdPrice, setUsdPrice] = useState(0);
@@ -142,7 +142,7 @@ const MyAssets = () => {
                                 <h2 className="text-white">My Assets in Mini Crypto</h2>
                                 <div className="assets-total-item">
                                     <div className="wrap-bold mt-2"><span>Total Asset Value : </span><span className="text-primary">{checkLoading(totalPrice)}</span></div>
-                                    <div className="wrap-bold mt-2">(<span>Cyber USD : </span><span className="text-success">{checkLoading(usdPrice)})</span></div>
+                                    <div className="wrap-bold mt-2">(<span>Cyber : </span><span className="text-success">{checkLoading(usdPrice)})</span></div>
                                 </div>
                                 <section className="assets-section">
                                     <div className="assets-item">

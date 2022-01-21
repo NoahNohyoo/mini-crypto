@@ -1,4 +1,5 @@
 import React from 'react';
+import Section from './Section';
 
 const Header = () => {
     return (
@@ -20,6 +21,7 @@ const Header = () => {
                     </div>
                 </div>
             </header>
+            <Section />
         </>
     )
 
