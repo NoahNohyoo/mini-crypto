@@ -55,7 +55,7 @@ const Trade = () => {
     }
 
     const checkUSD = (price) => {
-        return loading ? <Spinner /> : '(You have $' + price + ')';
+        return loading ? <Spinner /> : '(You have cyber USD $' + price + ')';
     }
 
     const checkCrypto = () => {
@@ -169,7 +169,7 @@ const Trade = () => {
         $("#trade-info").removeClass("text-success").addClass("text-danger");
 
         if (!selectedPrice) {
-            setInfo("Please select a category below.");
+            setInfo("Please select a coin you want below.");
             return true;
         }
 
@@ -219,7 +219,7 @@ const Trade = () => {
         $("#trade-info").removeClass().addClass("text-danger");
 
         if (!selectedPrice) {
-            setInfo("Please select a category below.");
+            setInfo("Please select a coin you want below.");
             return true;
         }
 
@@ -273,14 +273,14 @@ const Trade = () => {
         setSelectedIndex("");
         $("#trade-info").removeClass().addClass("text-danger");
         $("#trade-crypto").html(``);
-        $("#trade-symbol").html(`Please select a category below.`);
+        $("#trade-symbol").html(`Please select a coin you want below.`);
     }
 
     const setTradeTag = (symbol, price, index) => {
         inputClear();
         if (!price) {
             $("#trade-crypto").html(``);
-            $("#trade-symbol").html(`Please select a category below.`);
+            $("#trade-symbol").html(`Please select a coin you want below.`);
 
         } else {
             setSelectedSymbol(symbol);
@@ -320,21 +320,23 @@ const Trade = () => {
                                     <div>
                                         {/* <div id="trade-buy"><button className="" >Buy</button></div>
                             <div id="trade-sell"><button className="">Sell</button></div> */}
-                                        <div id="trade-symbol" className="text-success mb-lg-2">Please select a category below.</div>
+                                        <div id="trade-symbol" className="text-success mb-lg-2">Please select a coin you want below.</div>
                                         <div id="trade-quantity">
-                                            Quantity <input type="number" min="0" className="mb-lg-2 form-control" id="inputQuantity" value={inputQuantity}
+                                            <span className="wrap-bold">Quantity</span>
+                                            <input type="number" min="0" className="mb-lg-2 form-control" id="inputQuantity" value={inputQuantity}
                                                 onChange={e => setQuantity(e.target.value)}
                                             />
                                         </div>
                                         <div id="trade-amount">
-                                            Amount <input type="number" min="0" className="mb-lg-2 form-control" id="inputAmount" value={inputAmount}
+                                            <span className="wrap-bold">Amount</span>
+                                            <input type="number" min="0" className="mb-lg-2 form-control" id="inputAmount" value={inputAmount}
                                                 onChange={e => setAmount(e.target.value)}
                                             />
                                         </div>
-                                        <div className="trade-buttons">
-                                            <div id="trade-buy-button"><button className="btn btn-primary rounded-pill px-4 mb-02 mb-lg-2 me-lg-5" onClick={goBuy}>BUY</button></div>
-                                            <div id="trade-sell-button"><button className="btn btn-info rounded-pill px-4 mb-02 mb-lg-2 me-lg-5" onClick={goSell}>SELL</button></div>
-                                            <div id="trade-sell-button"><button className="btn btn-success rounded-pill px-3 mb-02 mb-lg-2 me-lg-5" onClick={inputClear}>Clear</button></div>
+                                        <div className="trade-buttons justify-content-center">
+                                            <div id="trade-buy-button"><button className="btn btn-primary rounded-pill px-5 mb-02 mb-lg-2 me-lg-2" onClick={goBuy}>BUY</button></div>
+                                            <div id="trade-sell-button"><button className="btn btn-info rounded-pill px-5 mb-02 mb-lg-2 me-lg-2" onClick={goSell}>SELL</button></div>
+                                            <div id="trade-sell-button"><button className="btn btn-success rounded-pill px-5 mb-02 mb-lg-2 me-lg-2" onClick={inputClear}>Clear</button></div>
                                         </div>
                                         <div id="trade-usd" className="text-default mb-lg-2">{checkUSD(usdPrice)}</div>
                                         <div id="trade-crypto" className="text-secondary mb-lg-2">{checkCrypto()}</div>

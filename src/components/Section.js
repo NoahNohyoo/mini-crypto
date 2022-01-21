@@ -13,7 +13,7 @@ const Section = () => {
                             <hr className="divider divider-light" />
                             <p className="text-white-75 mb-4">Mini Crypto has a variety of features that make it the best place to start trading</p>
                             <ul className="list-group-horizontal">
-                                <li className="cList">
+                                <li className="cList wrap-bold">
                                     <span className="item-no">#</span>
                                     <span className="item-name">Name</span>
                                     <span className="item-price">Price</span>

@@ -1,7 +1,7 @@
 # New portfolio in 2022
 
-- Project Name : Mini Crypto
+- Project Name : Mini-Crypto
 
-- Since : 12 Jan 2022
+- Related Server Name : Mini-Server
 
-- URL : https://noahnoh.netlify.app
+- URL : http://174.6.121.176:3000/

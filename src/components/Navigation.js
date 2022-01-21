@@ -46,17 +46,17 @@ const Navigation = () => {
             setInfoName("Please enter your name.");
             return;
         } else if (joinEmail === "" || joinEmail === undefined) {
-            setInfoEmail("Please enter a email.");
+            setInfoEmail("Please enter your email.");
             return;
         } else if (
             joinEmail.match(regExp) === null ||
             joinEmail.match(regExp) === undefined
         ) {
-            setInfoEmail("Please enter a valid email format.");
+            setInfoEmail("Please enter a correct email address.");
             setInputEmail("");
             return;
         } else if (joinPw === "" || joinPw === undefined) {
-            setInfoPassword("Please enter a password.");
+            setInfoPassword("Please enter your password.");
             return;
         } else if (
             joinPw.match(regExp2) === null ||
@@ -78,7 +78,7 @@ const Navigation = () => {
             .then(returnData => {
                 if (returnData.data.message) {
                     if (returnData.data.dupYn === "1") {
-                        setInfoEmail("Duplicate email. Please enter another email.");
+                        setInfoEmail("An account already exists with this email address.");
                         setInputEmail("");
                     } else {
                         setInputName("");

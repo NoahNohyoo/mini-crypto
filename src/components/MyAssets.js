@@ -141,8 +141,8 @@ const MyAssets = () => {
                             <div className="assets">
                                 <h2 className="text-white">My Assets in Mini Crypto</h2>
                                 <div className="assets-total-item">
-                                    <div className="wrap-bold"><span>Total Asset Value : </span><span className="text-primary">{checkLoading(totalPrice)}</span></div>
-                                    <div className="wrap-bold">(<span>USD : </span><span className="text-success">{checkLoading(usdPrice)})</span></div>
+                                    <div className="wrap-bold mt-2"><span>Total Asset Value : </span><span className="text-primary">{checkLoading(totalPrice)}</span></div>
+                                    <div className="wrap-bold mt-2">(<span>Cyber USD : </span><span className="text-success">{checkLoading(usdPrice)})</span></div>
                                 </div>
                                 <section className="assets-section">
                                     <div className="assets-item">
