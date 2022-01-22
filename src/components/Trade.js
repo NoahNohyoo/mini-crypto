@@ -298,7 +298,7 @@ const Trade = () => {
     const drawList = () => {
         return (
             cryptos.map((info, index) => (
-                <div className="assets-item btn-area" onClick={() => setTradeTag(`${info.symbol}`, price[index].price, index)} key={info.symbol} >
+                <div className="trade-item btn-area" onClick={() => setTradeTag(`${info.symbol}`, price[index].price, index)} key={info.symbol} >
                     <span><img className="icon-symbol" src={info.imgUrl} /> {info.symbol} {checkLoading(eval(`${info.symbolLower}Price`))}</span>
                 </div >
             ))
@@ -326,9 +326,9 @@ const Trade = () => {
                 <div className="container px-7 px-lg-5">
                     <div className="row gx-7 gx-lg-5 justify-content-center">
                         <div className="col-lg-7 text-center">
-                            <div className="assets">
+                            <div className="trade">
                                 <h2 className="text-white">Trade in Mini Crypto</h2>
-                                <div className="assets-total-item">
+                                <div className="trade-total-item">
                                     <div>
                                         <div id="trade-symbol" className="text-success mb-lg-2">Please select a coin you want below.</div>
                                         <div id="trade-quantity">
@@ -353,7 +353,7 @@ const Trade = () => {
                                         <div id="trade-info" className="text-danger"><span className="wrap-bold">{info}</span></div>
                                     </div>
                                 </div>
-                                <div className="assets-list">
+                                <div className="trade-list">
                                     {drawList()}
                                 </div>
                             </div>

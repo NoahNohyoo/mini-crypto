@@ -42,6 +42,8 @@
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
+  --bs-trade: #b3daff;
+  --bs-trade-border: #0185dd;
   /* --bs-primary-rgb: 0, 204, 204; */
   --bs-primary-rgb: 244, 98, 58;
   --bs-secondary-rgb: 108, 117, 125;
@@ -11859,12 +11861,14 @@ header.masthead .h1 {
   cursor: pointer;
 }
 
+.trade,
 .assets {
   position: relative;
   align-content: center;
 }
 
-.assets .assets-total-item {
+.trade-total-item,
+.assets-total-item {
   background-color: var(--bs-white);
   border: 1px solid gray;
   border-radius: 5px;
@@ -11873,13 +11877,13 @@ header.masthead .h1 {
   margin-bottom: 1.5%;
 }
 
-.assets .assets-total-item .trade-buttons {
+.trade-buttons {
   display: flex;
   align-content: center;
   padding: 2%;
 }
 
-.assets-item .icon-symbol {
+.icon-symbol {
   width: 40%;
   border-radius: 10%;
 }
@@ -11888,6 +11892,7 @@ header.masthead .h1 {
   font-weight: bold;
 }
 
+.trade-list,
 .assets-list {
   display: flex;
   flex-direction: row;
@@ -11895,6 +11900,7 @@ header.masthead .h1 {
   align-items: stretch;
 }
 
+.trade-item,
 .assets-item {
   background-color: var(--bs-white);
   border: 1px solid gray;
@@ -11909,4 +11915,11 @@ header.masthead .h1 {
 
 .btn-area {
   cursor: pointer;
+}
+
+.btn-area:hover {
+  transform: scale(1.1);
+  border: 2px solid var(--bs-trade-border);
+  background-color: var(--bs-trade);
+  font-weight: bold;
 }
