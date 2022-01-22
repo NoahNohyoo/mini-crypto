@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Spinner from './Spinner';
 import axios from 'axios';
 
-const SectionData = () => {
+const MainListData = () => {
     const [loading, setLoading] = useState(true);
     const cryptosCode = ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'SOLUSDT', 'ADAUSDT', 'XRPUSDT', 'LUNAUSDT', 'DOTUSDT', 'DOGEUSDT', 'MATICUSDT', 'LINKUSDT', 'UNIUSDT'];
     const cryptosName = ['Bitcoin', 'Ethereum', 'BNB', 'Solana', 'Cardano', 'XRP', 'Terra', 'Polkadot', 'Dogecoin', 'Polygon', 'Chainlink', 'Uniswap'];
@@ -59,4 +59,4 @@ const SectionData = () => {
     )
 }
 
-export default SectionData;
+export default MainListData;

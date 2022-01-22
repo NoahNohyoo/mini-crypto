@@ -1,7 +1,7 @@
 import React from 'react';
-import Section from './Section';
+import MainList from './MainList';
 
-const Header = () => {
+const MainIntro = () => {
     return (
         <>
             {/* Intro area */}
@@ -21,10 +21,10 @@ const Header = () => {
                     </div>
                 </div>
             </header>
-            <Section />
+            <MainList />
         </>
     )
 
 }
 
-export default Header;
+export default MainIntro;

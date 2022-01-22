@@ -1,7 +1,7 @@
 import React from 'react';
-import SectionData from "./SectionData";
+import MainListData from "./MainListData";
 
-const Section = () => {
+const MainList = () => {
     return (
         <>
             {/* Main List */}
@@ -18,7 +18,7 @@ const Section = () => {
                                     <span className="item-name">Name</span>
                                     <span className="item-price">Price</span>
                                 </li>
-                                <SectionData />
+                                <MainListData />
                             </ul>
                         </div>
                     </div>
@@ -28,4 +28,4 @@ const Section = () => {
     )
 }
 
-export default Section;
+export default MainList;
