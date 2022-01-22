@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import $ from "jquery";
+import * as config from "../config";
 const headers = { withCredentials: true };
 
 const SignUp = () => {
@@ -63,7 +64,7 @@ const SignUp = () => {
             password: joinPw
         };
         axios
-            .post("http://174.6.121.176:8080/miniUser/join", send_param)
+            .post(`${config.SERVER_URL}/miniUser/join`, send_param)
             .then(returnData => {
                 if (returnData.data.message) {
                     if (returnData.data.dupYn === "1") {

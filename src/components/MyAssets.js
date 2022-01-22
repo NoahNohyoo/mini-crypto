@@ -3,6 +3,7 @@ import axios from "axios";
 import $ from "jquery";
 import { } from "jquery.cookie";
 import Spinner from './Spinner';
+import * as config from "../config";
 const headers = { withCredentials: true };
 
 const MyAssets = () => {
@@ -82,8 +83,7 @@ const MyAssets = () => {
             userSeq: userSeq,
         };
         await axios
-            // .post("http://localhost:8080/miniAssets/retrieveAssets", send_param)
-            .post("http://174.6.121.176:8080/miniAssets/retrieveAssets", send_param)
+            .post(`${config.SERVER_URL}/miniAssets/retrieveAssets`, send_param)
             .then(returnData => {
                 if (returnData.data.message) {
                     // console.log(returnData.data.message);

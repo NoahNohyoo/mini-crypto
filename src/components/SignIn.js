@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import $ from "jquery";
 import { } from "jquery.cookie";
+import * as config from "../config";
 const headers = { withCredentials: true };
 
 const SignIn = () => {
@@ -51,9 +52,7 @@ const SignIn = () => {
         };
         initForms();
         axios
-            // .post("http://localhost:8080/miniUser/login", send_param)
-            .post("http://174.6.121.176:8080/miniUser/login", send_param)
-            // .post("https://mini-server.netlify.app/miniUser/login", send_param)
+            .post(`${config.SERVER_URL}/miniUser/login`, send_param)
             .then(returnData => {
                 if (returnData.data._id) {
                     console.log("login_id:" + returnData.data._id);

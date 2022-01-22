@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import $ from "jquery";
 import { } from "jquery.cookie";
+import * as config from "../config";
 const headers = { withCredentials: true };
 
 const SignOut = (props) => {
@@ -16,7 +17,7 @@ const SignOut = (props) => {
 
     const goSignOut = async () => {
         axios
-            .get("http://174.6.121.176:8080/miniUser/logout", {
+            .get(`${config.SERVER_URL}/miniUser/logout`, {
                 headers
             })
             .then(returnData => {

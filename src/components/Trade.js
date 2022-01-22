@@ -4,6 +4,7 @@ import axios from "axios";
 import $ from "jquery";
 import { } from "jquery.cookie";
 import Spinner from './Spinner';
+import * as config from "../config";
 const headers = { withCredentials: true };
 
 const Trade = () => {
@@ -104,7 +105,7 @@ const Trade = () => {
             userSeq: userSeq,
         };
         await axios
-            .post("http://174.6.121.176:8080/miniAssets/retrieveAssets", send_param)
+            .post(`${config.SERVER_URL}/miniAssets/retrieveAssets`, send_param)
             .then(returnData => {
 
                 if (returnData.data.message) {
@@ -197,7 +198,7 @@ const Trade = () => {
             amount: parseFloat(amountFixed(inputAmount)),
         };
         await axios
-            .post("http://174.6.121.176:8080/miniTrade/buy", send_param)
+            .post(`${config.SERVER_URL}/miniTrade/buy`, send_param)
             .then(returnData => {
                 if (returnData.data.message) {
                     // console.log(returnData.data.message);
@@ -247,7 +248,7 @@ const Trade = () => {
             amount: parseFloat(amountFixed(inputAmount)),
         };
         await axios
-            .post("http://174.6.121.176:8080/miniTrade/sell", send_param)
+            .post(`${config.SERVER_URL}/miniTrade/sell`, send_param)
             .then(returnData => {
                 if (returnData.data.message) {
                     // console.log(returnData.data.message);
