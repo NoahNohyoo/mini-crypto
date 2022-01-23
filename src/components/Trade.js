@@ -200,20 +200,18 @@ const Trade = () => {
         await axios
             .post(`${config.SERVER_URL}/miniTrade/buy`, send_param)
             .then(returnData => {
-                if (returnData.data.message) {
-                    // console.log(returnData.data.message);
-                    console.log(returnData.data.message);
+                if (returnData.data.message === "Succeed") {
+                    setInputQuantity(0);
+                    setInputAmount(0);
+                    $("#trade-info").removeClass().addClass("text-success");
+                    setInfo("Buying transaction has been successfully processed!");
                 } else {
-                    console.log(returnData.data.message);
+                    setInfo("Buying failed.");
                 }
-                setInputQuantity(0);
-                setInputAmount(0);
-                $("#trade-info").removeClass().addClass("text-success");
-                setInfo("Buying transaction has been successfully processed!");
             })
             .catch(err => {
                 console.log(err);
-                setInfo("Service Error!");
+                setInfo("Service Error.");
             });
     }
 
@@ -250,20 +248,18 @@ const Trade = () => {
         await axios
             .post(`${config.SERVER_URL}/miniTrade/sell`, send_param)
             .then(returnData => {
-                if (returnData.data.message) {
-                    // console.log(returnData.data.message);
-                    console.log(returnData.data.message);
+                if (returnData.data.message === "Succeed") {
+                    setInputQuantity(0);
+                    setInputAmount(0);
+                    $("#trade-info").removeClass().addClass("text-success");
+                    setInfo("Selling transaction has been successfully processed!");
                 } else {
-                    console.log(returnData.data.message);
+                    setInfo("Selling failed.");
                 }
-                setInputQuantity(0);
-                setInputAmount(0);
-                $("#trade-info").removeClass().addClass("text-success");
-                setInfo("Selling transaction has been successfully processed!");
             })
             .catch(err => {
                 console.log(err);
-                setInfo("Service Error!");
+                setInfo("Service Error.");
             });
     }
 

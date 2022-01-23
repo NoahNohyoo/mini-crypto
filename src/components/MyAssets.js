@@ -13,6 +13,7 @@ const MyAssets = () => {
     const [price, setPrice] = useState([]);
     const [cryptos, setCryptos] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [totalPriceNum, setTotalPriceNum] = useState(0);
     const [usdPrice, setUsdPrice] = useState(0);
     const [btcPrice, setBtcPrice] = useState(0);
     const [ethPrice, setEthPrice] = useState(0);
@@ -39,6 +40,42 @@ const MyAssets = () => {
         return loading ? <Spinner /> : '$' + price;
     }
 
+    // default cyber money is $1,000,000
+    const defaultCyber = 1000000;
+
+    const checkRevenue = (price) => {
+        const val = (price - defaultCyber);
+
+        if (val < 0) {
+            $("#revenue-amount").removeClass().addClass("text-danger");
+        } else if (val > 0) {
+            $("#revenue-amount").removeClass().addClass("text-success");
+        } else {
+            $("#revenue-amount").removeClass();
+        }
+
+        return loading ? <Spinner /> : '$' + amountCommas(amountFixed(val));
+    }
+
+    // default cyber money is $1,000,000
+    const checkRate = (price) => {
+        let val = ((price - defaultCyber) / defaultCyber) * 100;
+
+        if (val < 0) {
+            $("#revenue-rate").removeClass().addClass("text-danger");
+            val = Math.floor(val * 100);
+            val = val / 100;
+        } else if (val > 0) {
+            $("#revenue-rate").removeClass().addClass("text-success");
+            val = Math.ceil(val * 100);
+            val = val / 100;
+        } else {
+            $("#revenue-rate").removeClass();
+        }
+
+        return loading ? <Spinner /> : amountFixed(val) + '%';
+    }
+
     const refreshPrice = async () => {
         if (assets && price.length > 0) {
 
@@ -57,6 +94,7 @@ const MyAssets = () => {
             const uni = assets.uni * price[11].price;
             const total = usd + btc + eth + bnb + sol + ada + xrp + luna + dot + doge + matic + link + uni;
 
+            setTotalPriceNum(total);
             setTotalPrice(amountCommas(amountFixed(total)));
             setBtcPrice(amountCommas(amountFixed(btc)));
             setUsdPrice(amountCommas(amountFixed(usd)));
@@ -157,8 +195,10 @@ const MyAssets = () => {
                             <div className="assets">
                                 <h2 className="text-white">My Assets in Mini Crypto</h2>
                                 <div className="assets-total-item">
-                                    <div className="wrap-bold mt-2"><span>Total Asset Value : </span><span className="text-primary">{checkLoading(totalPrice)}</span></div>
-                                    <div className="wrap-bold mt-2">(<span>cyber : </span><span className="text-success">{checkLoading(usdPrice)})</span></div>
+                                    <div className="wrap-bold mt-3"><span>Total Asset Amount : </span><span className="text-default">{checkLoading(totalPrice)}</span></div>
+                                    <div className="mt-3">(<span>possess cyber : </span><span className="text-info">{checkLoading(usdPrice)}</span>)</div>
+                                    <div className="mt-3"><span>revenue amount : </span><span id="revenue-amount">{checkRevenue(totalPriceNum)}</span></div>
+                                    <div className="mt-3"><span>revenue rate : </span><span id="revenue-rate">{checkRate(totalPriceNum)}</span></div>
                                 </div>
                                 <div className="assets-list">
                                     {drawList()}
