@@ -137,9 +137,7 @@ const Trade = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get(
-                'https://api.binance.com/api/v1/ticker/allPrices'
-            );
+            const response = await axios.get(config.BINANCE_API_URL);
             const cryptoListPrice = [];
             cryptosCode.map((crypto) => {
                 const data = (response.data).find(ele => ele.symbol === crypto);

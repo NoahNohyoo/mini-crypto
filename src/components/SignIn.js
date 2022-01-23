@@ -55,7 +55,6 @@ const SignIn = () => {
             .post(`${config.SERVER_URL}/miniUser/login`, send_param)
             .then(returnData => {
                 if (returnData.data._id) {
-                    console.log("login_id:" + returnData.data._id);
                     $.cookie("login_id", returnData.data._id, { expires: 1 });
                     $.cookie("login_seq", returnData.data.userSeq, { expires: 1 });
                     $.cookie("login_name", returnData.data.name, { expires: 1 });

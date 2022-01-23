@@ -14,7 +14,7 @@ const MainIntro = () => {
                         </div>
                         <div className="col-lg-8 align-self-baseline">
                             <p className="text-white-75 mb-4">Step 1) Look around a view crypto list.</p>
-                            <p className="text-white-75 mb-4">Step 2) Sign up to get cyber money($1,000,000)</p>
+                            <p className="text-white-75 mb-4">Step 2) Sign up to get cyber cash($1,000,000)</p>
                             <p className="text-white-75 mb-4">Step 3) Enjoy the trade and check your assets.</p>
                             <a className="btn btn-primary btn-xl" href="#list">VIEW CRYPTO LIST</a>
                         </div>

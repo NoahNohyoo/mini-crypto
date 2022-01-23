@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Spinner from './Spinner';
 import axios from 'axios';
+import * as config from "../config";
 
 const MainListData = () => {
     const [loading, setLoading] = useState(true);
@@ -15,9 +16,7 @@ const MainListData = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get(
-                'https://api.binance.com/api/v1/ticker/allPrices'
-            );
+            const response = await axios.get(config.BINANCE_API_URL);
             const cryptoList = [];
             cryptosCode.map((crypto, index) => {
                 const data = (response.data).find(ele => ele.symbol === crypto);
