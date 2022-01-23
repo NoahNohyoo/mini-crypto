@@ -11861,6 +11861,15 @@ header.masthead .h1 {
   cursor: pointer;
 }
 
+#total-value {
+  background-color: #ccf2ff;
+}
+
+#revenue-rate,
+#revenue-amount {
+  background-color: #ffffb3;
+}
+
 .trade,
 .assets {
   position: relative;

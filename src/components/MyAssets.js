@@ -195,10 +195,10 @@ const MyAssets = () => {
                             <div className="assets">
                                 <h2 className="text-white">My Assets in Mini Crypto</h2>
                                 <div className="assets-total-item">
-                                    <div className="wrap-bold mt-3"><span>Total Asset Amount : </span><span className="text-default">{checkLoading(totalPrice)}</span></div>
-                                    <div className="mt-3">(<span>possess cyber : </span><span className="text-info">{checkLoading(usdPrice)}</span>)</div>
-                                    <div className="mt-3"><span>revenue amount : </span><span id="revenue-amount">{checkRevenue(totalPriceNum)}</span></div>
-                                    <div className="mt-3"><span>revenue rate : </span><span id="revenue-rate">{checkRate(totalPriceNum)}</span></div>
+                                    <div className="wrap-bold mt-3"><ins><span>Total Asset Value : </span><span id="total-value" className="text-default">{checkLoading(totalPrice)}</span></ins></div>
+                                    <div className="mt-3">(<span>Current Cyber Cash : </span><span className="text-primary">{checkLoading(usdPrice)}</span>)</div>
+                                    <div className="wrap-bold mt-3"><span>Total Return : </span><span id="revenue-amount">{checkRevenue(totalPriceNum)}</span></div>
+                                    <div className="wrap-bold mt-3"><span>Rate of Return : </span><span id="revenue-rate">{checkRate(totalPriceNum)}</span></div>
                                 </div>
                                 <div className="assets-list">
                                     {drawList()}
