@@ -177,7 +177,7 @@ const Trade = () => {
         if (inputAmount > assets.usd) {
             setInputQuantity(0);
             setInputAmount(0);
-            setInfo("Not enough USD Balance.");
+            setInfo("Insufficient USD Balance.");
             return true;
         }
 
@@ -202,9 +202,9 @@ const Trade = () => {
                     setInputQuantity(0);
                     setInputAmount(0);
                     $("#trade-info").removeClass().addClass("text-success");
-                    setInfo("Buying transaction has been successfully processed!");
+                    setInfo("Sale has been successfully processed!");
                 } else {
-                    setInfo("Buying failed.");
+                    setInfo("Sale has been failed.");
                 }
             })
             .catch(err => {
@@ -225,7 +225,7 @@ const Trade = () => {
         if (inputQuantity > cryptosCount[selectedIndex]) {
             setInputQuantity(0);
             setInputAmount(0);
-            setInfo(`Not enough ${selectedSymbol} Balance.`);
+            setInfo(`Insufficient ${selectedSymbol} Balance.`);
             return true;
         }
 
@@ -250,9 +250,9 @@ const Trade = () => {
                     setInputQuantity(0);
                     setInputAmount(0);
                     $("#trade-info").removeClass().addClass("text-success");
-                    setInfo("Selling transaction has been successfully processed!");
+                    setInfo("Sale has been successfully processed!");
                 } else {
-                    setInfo("Selling failed.");
+                    setInfo("Sale has been failed.");
                 }
             })
             .catch(err => {
@@ -333,7 +333,7 @@ const Trade = () => {
                                             />
                                         </div>
                                         <div id="trade-amount">
-                                            <span className="wrap-bold">Amount</span>
+                                            <span className="wrap-bold">Value</span>
                                             <input type="number" min="0" className="mb-lg-2 form-control" id="inputAmount" value={inputAmount}
                                                 onChange={e => setAmount(e.target.value)}
                                             />

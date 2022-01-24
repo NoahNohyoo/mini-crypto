@@ -9,6 +9,7 @@ const SignUp = () => {
     const [inputName, setInputName] = useState('');
     const [inputEmail, setInputEmail] = useState('');
     const [inputPassword, setInputPassword] = useState('');
+    const [inputRePassword, setInputRePassword] = useState('');
     const [infoName, setInfoName] = useState('');
     const [infoEmail, setInfoEmail] = useState('');
     const [infoPassword, setInfoPassword] = useState('');
@@ -26,6 +27,7 @@ const SignUp = () => {
         const joinName = inputName;
         const joinEmail = inputEmail;
         const joinPw = inputPassword;
+        const joinRePw = inputRePassword;
         const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
         const regExp2 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,16}$/;
 
@@ -45,8 +47,13 @@ const SignUp = () => {
             setInfoEmail("Please enter a correct email address.");
             setInputEmail("");
             return;
-        } else if (joinPw === "" || joinPw === undefined) {
+        } else if (joinPw === "" || joinPw === undefined || joinRePw === "" || joinRePw === undefined) {
             setInfoPassword("Please enter your password.");
+            return;
+        } else if (joinPw !== joinRePw) {
+            setInfoPassword("Passwords do not match .")
+            setInputPassword("");
+            setInputRePassword("");
             return;
         } else if (
             joinPw.match(regExp2) === null ||
@@ -54,6 +61,7 @@ const SignUp = () => {
         ) {
             setInfoPassword("Please enter a password of 4 to 16 digits including numbers, letters and special characters.")
             setInputPassword("");
+            setInputRePassword("");
             return;
         }
 
@@ -98,7 +106,7 @@ const SignUp = () => {
                         </div>
                         <div className="modal-body border-0 p-4">
                             <div className="form-floating mb-3">
-                                <input className="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" value={inputName}
+                                <input className="form-control" id="name" type="text" placeholder="Enter your name" value={inputName}
                                     onChange={e => setInputName(e.target.value)} onKeyPress={e => keyEnter(e)}
                                 />
                                 <label htmlFor="name">Full name*</label>
@@ -112,10 +120,16 @@ const SignUp = () => {
                                 <div className="text-danger">{infoEmail}</div>
                             </div>
                             <div className="form-floating mb-3">
-                                <input className="form-control" id="password" type="password" data-sb-validations="required" value={inputPassword}
+                                <input className="form-control" id="password" type="password" placeholder="p" value={inputPassword}
                                     onChange={e => setInputPassword(e.target.value)} onKeyPress={e => keyEnter(e)}
                                 />
                                 <label htmlFor="password">Password*</label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input className="form-control" id="re-password" type="password" placeholder="p" value={inputRePassword}
+                                    onChange={e => setInputRePassword(e.target.value)} onKeyPress={e => keyEnter(e)}
+                                />
+                                <label htmlFor="password">Confirm Password*</label>
                                 <div className="text-danger">{infoPassword}</div>
                             </div>
                             <div className="d-grid"><button className="btn btn-primary rounded-pill btn-lg" onClick={goSignUp}>Sign up</button></div>
