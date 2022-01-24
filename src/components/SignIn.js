@@ -30,8 +30,8 @@ const SignIn = () => {
     }
 
     const history = useHistory();
-    const handleToMain = () => {
-        history.push("/");
+    const handleToTrade = () => {
+        history.push("/trade");
     }
 
     const goSignIn = async () => {
@@ -59,7 +59,7 @@ const SignIn = () => {
                     $.cookie("login_seq", returnData.data.userSeq, { expires: 1 });
                     $.cookie("login_name", returnData.data.name, { expires: 1 });
                     toggle();
-                    handleToMain();
+                    handleToTrade();
                 } else {
                     setInfoPassword(returnData.data.message);
                 }
