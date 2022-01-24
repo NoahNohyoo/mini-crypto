@@ -32,4 +32,4 @@
   ![READ_IMG_003](https://user-images.githubusercontent.com/93843669/150720128-fe99f89c-ce67-4a0d-83bb-6302a7439cf3.png)
 
 - MyAssets
-  ![READ_IMG_004](https://user-images.githubusercontent.com/93843669/150720121-289f5045-9483-4a23-a75f-eb2d26a82e98.png)
+  ![READ_IMG_004](https://user-images.githubusercontent.com/93843669/150884540-17c9b4f9-736b-48b0-bedc-70b59a14bd43.png)

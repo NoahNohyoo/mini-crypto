@@ -262,15 +262,15 @@ const Trade = () => {
     }
 
     const inputClear = () => {
+        $("#trade-info").removeClass().addClass("text-danger");
+        $("#trade-crypto").html(``);
+        $("#trade-symbol").html(`Please select a coin you want below.`);
         setInfo("");
         setInputQuantity(0);
         setInputAmount(0);
         setSelectedSymbol("");
         setSelectedPrice("");
         setSelectedIndex("");
-        $("#trade-info").removeClass().addClass("text-danger");
-        $("#trade-crypto").html(``);
-        $("#trade-symbol").html(`Please select a coin you want below.`);
     }
 
     const setTradeTag = (symbol, price, index) => {
@@ -286,7 +286,7 @@ const Trade = () => {
             const symbolLower = symbol.toLowerCase();
             const imageUrl = `/images/icons/icon_${symbolLower}.png`;
             $("#trade-crypto").html(`You have ${symbol} : ${amountFixed(cryptosCount[index])}`);
-            $("#trade-symbol").html(`<img className="icon-symbol" src=${imageUrl} /><span> ${symbol} ${checkLoading(price)}</span>`);
+            $("#trade-symbol").html(`<img className="icon-symbol" src=${imageUrl} /><span> ${symbol} $(${price})</span>`);
         }
     }
 

@@ -3,6 +3,7 @@ import axios from "axios";
 import $ from "jquery";
 import { } from "jquery.cookie";
 import Spinner from './Spinner';
+import MyAssetsChat from './MyAssetsChat';
 import * as config from "../config";
 const headers = { withCredentials: true };
 
@@ -113,6 +114,10 @@ const MyAssets = () => {
         }
     }
 
+    const drawAssetsChat = () => {
+        return loading ? <Spinner /> : <MyAssetsChat assets={assets} price={price} />;
+    }
+
     const retrieveAssets = async () => {
 
         const userSeq = $.cookie("login_seq");
@@ -182,7 +187,6 @@ const MyAssets = () => {
         return () => clearTimeout(timerId);
     }, [cryptos]);
 
-
     return (
         <div>
             {/* My Assets */}
@@ -197,6 +201,9 @@ const MyAssets = () => {
                                     <div className="mt-3">(<span>Current Cyber Cash : </span><span className="text-primary">{checkLoading(usdPrice)}</span>)</div>
                                     <div className="wrap-bold mt-3"><span>Total Return : </span><span id="revenue-amount">{checkRevenue(totalPriceNum)}</span></div>
                                     <div className="wrap-bold mt-3"><span>Rate of Return : </span><span id="revenue-rate">{checkRate(totalPriceNum)}</span></div>
+                                </div>
+                                <div className="assets-chat">
+                                    {drawAssetsChat()}
                                 </div>
                                 <div className="assets-list">
                                     {drawList()}

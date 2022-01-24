@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from 'react-router-dom';
+} from "react-router-dom";
 import routes from './routes';
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
-import './App.css';
+import "./App.css";
 
 function App() {
   return (

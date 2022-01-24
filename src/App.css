@@ -11889,9 +11889,20 @@ header.masthead .h1 {
   background-color: var(--bs-white);
   border: 1px solid gray;
   border-radius: 5px;
-  align-items: left !important;
   padding: 5%;
   margin-bottom: 1.5%;
+}
+
+.assets-chat {
+  background-color: var(--bs-white);
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin-bottom: 1.5%;
+}
+
+.assets-chat-item {
+  width: 100%;
+  height: 340px;
 }
 
 .trade-buttons {
