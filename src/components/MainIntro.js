@@ -1,3 +1,11 @@
+/**************************************************************
+ *  Author : Noah Noh
+ *  Date : 14 Jan 2022
+ * 
+ *  - Main page introducing this site
+ * 
+***************************************************************/
+
 import React from 'react';
 import MainList from './MainList';
 

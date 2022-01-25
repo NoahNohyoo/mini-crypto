@@ -1,3 +1,11 @@
+/**************************************************************
+ *  Author : Noah Noh
+ *  Date : 16 Jan 2022
+ * 
+ *  - Welcome page after signup
+ * 
+***************************************************************/
+
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 

@@ -1,3 +1,11 @@
+/**************************************************************
+ *  Author : Noah Noh
+ *  Date : 15 Jan 2022
+ * 
+ *  - A page that inquires the data of the MainList page
+ * 
+***************************************************************/
+
 import React, { useState, useEffect } from 'react';
 import Spinner from './Spinner';
 import axios from 'axios';

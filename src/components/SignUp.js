@@ -1,3 +1,12 @@
+/**************************************************************
+ *  Author : Noah Noh
+ *  Date : 16 Jan 2022
+ * 
+ *  - A page where new users can sign up - composed of modal
+ *  - Go to the welcome page after registering as a member
+ * 
+***************************************************************/
+
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from "axios";

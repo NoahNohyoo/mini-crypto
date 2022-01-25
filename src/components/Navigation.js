@@ -1,3 +1,12 @@
+/**************************************************************
+ *  Author : Noah Noh
+ *  Date : 13 Jan 2022
+ * 
+ *  - Common page displayed at the top
+ *  - A page where you can choose which features to use
+ * 
+***************************************************************/
+
 import React, { useState, useEffect } from 'react';
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js'; // use
 import { Link, NavLink } from 'react-router-dom';

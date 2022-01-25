@@ -1,3 +1,13 @@
+/**************************************************************
+ *  Author : Noah Noh
+ *  Date : 16 Jan 2022
+ * 
+ *  - The page displayed when you click or touch [Sign In] 
+ *    on the top navigation bar
+ *  - A page that provides a login function
+ * 
+***************************************************************/
+
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from "axios";

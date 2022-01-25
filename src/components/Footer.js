@@ -1,3 +1,11 @@
+/**************************************************************
+ *  Author : Noah Noh
+ *  Date : 13 Jan 2022
+ * 
+ *  - Common page displayed at the bottom
+ * 
+***************************************************************/
+
 import React from 'react';
 
 const Footer = () => {

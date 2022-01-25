@@ -1,3 +1,13 @@
+/**************************************************************
+ *  Author : Noah Noh
+ *  Date : 17 Jan 2022
+ * 
+ *  - A page showing the user's asset status
+ * 
+ *  - A Page available after login
+ * 
+***************************************************************/
+
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import $ from "jquery";

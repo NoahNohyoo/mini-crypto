@@ -1,3 +1,14 @@
+/**************************************************************
+ *  Author : Noah Noh
+ *  Date : 19 Jan 2022
+ * 
+ *  - A page that offers purchases and sales by selecting 
+ *    the type of cryptocurrency
+ * 
+ *  - A Page available after login
+ * 
+***************************************************************/
+
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from "axios";

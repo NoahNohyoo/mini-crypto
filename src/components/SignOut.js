@@ -1,4 +1,11 @@
-import React, { useState, useEffect } from 'react';
+/**************************************************************
+ *  Author : Noah Noh
+ *  Date : 16 Jan 2022
+ * 
+ *  - A page with logout function
+ * 
+***************************************************************/
+
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import $ from "jquery";

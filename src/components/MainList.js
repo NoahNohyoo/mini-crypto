@@ -1,3 +1,12 @@
+/**************************************************************
+ *  Author : Noah Noh
+ *  Date : 15 Jan 2022
+ * 
+ *  - A page showing the types and prices 
+ *    of available cryptocurrencies
+ * 
+***************************************************************/
+
 import React from 'react';
 import MainListData from "./MainListData";
 

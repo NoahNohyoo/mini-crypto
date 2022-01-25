@@ -1,3 +1,11 @@
+/**************************************************************
+ *  Author : Noah Noh
+ *  Date : 24 Jan 2022
+ * 
+ *  - Use Google Charts to show the distribution of assets.
+ * 
+***************************************************************/
+
 import React, { useEffect } from "react";
 
 const MyAssetsChart = ({ assets, price }) => {
