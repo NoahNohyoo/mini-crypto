@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const MyAssetsChat = ({ assets, price }) => {
+const MyAssetsChart = ({ assets, price }) => {
     const usd = assets.usd;
     const btc = assets.btc * price[0].price;
     const eth = assets.eth * price[1].price;
@@ -18,7 +18,7 @@ const MyAssetsChat = ({ assets, price }) => {
     useEffect(() => {
         const script = document.createElement("script");
         script.innerHTML = `         
-            function initChat() {
+            function initChart() {
                 google.charts.load("current", { packages: ["corechart"] });
                 google.charts.setOnLoadCallback(drawChart);
                 function drawChart() {
@@ -40,7 +40,7 @@ const MyAssetsChat = ({ assets, price }) => {
                     ]);
                     const cryptosName = ['Bitcoin', 'Ethereum', 'BNB', 'Solana', 'Cardano', 'XRP', 'Terra', 'Polkadot', 'Dogecoin', 'Polygon', 'Chainlink', 'Uniswap'];
                     const options = {
-                        title: "Assets Chat",
+                        title: "Assets Chart",
                         pieHole: 0.3,
                     };
 
@@ -50,7 +50,7 @@ const MyAssetsChat = ({ assets, price }) => {
                     chart.draw(data, options);
                 }
             }
-            initChat();
+            initChart();
        `;
         script.type = "text/javascript";
         script.async = "async";
@@ -62,4 +62,4 @@ const MyAssetsChat = ({ assets, price }) => {
     )
 }
 
-export default MyAssetsChat;
+export default MyAssetsChart;

@@ -3,7 +3,7 @@ import axios from "axios";
 import $ from "jquery";
 import { } from "jquery.cookie";
 import Spinner from './Spinner';
-import MyAssetsChat from './MyAssetsChat';
+import MyAssetsChart from './MyAssetsChart';
 import * as config from "../config";
 const headers = { withCredentials: true };
 
@@ -114,8 +114,8 @@ const MyAssets = () => {
         }
     }
 
-    const drawAssetsChat = () => {
-        return loading ? <Spinner /> : <MyAssetsChat assets={assets} price={price} />;
+    const drawAssetsChart = () => {
+        return loading ? <Spinner /> : <MyAssetsChart assets={assets} price={price} />;
     }
 
     const retrieveAssets = async () => {
@@ -203,7 +203,7 @@ const MyAssets = () => {
                                     <div className="wrap-bold mt-3"><span>Rate of Return : </span><span id="revenue-rate">{checkRate(totalPriceNum)}</span></div>
                                 </div>
                                 <div className="assets-chat">
-                                    {drawAssetsChat()}
+                                    {drawAssetsChart()}
                                 </div>
                                 <div className="assets-list">
                                     {drawList()}
