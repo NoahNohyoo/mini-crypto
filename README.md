@@ -1,12 +1,12 @@
 # Mini-Crypto Portfolio
 
-- Project Name : Mini-Crypto
+- Front-End Project Name : Mini-Crypto
 
 1.  React
 2.  Bootstrap
 3.  Binance Exchange API
 
-- Related Server Name : Mini-Server
+- Back-End Server Name : Mini-Server
 
 1.  Node.js
 2.  MongoDB
