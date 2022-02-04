@@ -19,8 +19,6 @@
 
 # Portfolio Preview
 
-- URL : http://174.6.121.176:3000/
-
 - Main Page
   ![READ_IMG_001](https://user-images.githubusercontent.com/93843669/150720122-182d7553-3b56-47de-9498-38439f680832.png)
   ![READ_IMG_005](https://user-images.githubusercontent.com/93843669/150720613-7734c9c7-03ad-4f93-8423-f0dd819d260f.png)
